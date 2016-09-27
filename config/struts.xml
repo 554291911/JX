@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 配置为开发模式 -->
+	<constant name="struts.devMode" value="true" />
+	<!-- 把扩展名配置为action -->
+	<constant name="struts.action.extension" value="action" />
+	<!-- 把主题配置为simple -->
+	<constant name="struts.ui.theme" value="simple" />
+	<!-- 指定国际化资源文件的baseName为messageResource -->
+	<constant name="struts.custom.i18n.resources" value="message" />
+	<!-- 设置该应用使用的解码集 -->
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<!-- 上传过程中临时文件存放目录 -->
+	<constant name="struts.multipart.saveDir" value="D:\" />
+	<!-- 设置上传文件大小 最大10M -->
+	<constant name="struts.multipart.maxSize" value="10485760" />
+
+
+
+
+	<package name="default" namespace="/" extends="struts-default">
+	 
+	
+		<interceptors>
+    		<!-- 声明拦截器 -->
+    		<interceptor name="checkPrivilege" class="edu.xupt.util.CheckPrivilegeInterceptor"></interceptor>
+    		
+    		<!-- 重新定义默认的拦截器栈 -->
+    		<interceptor-stack name="defaultStack">
+    			<interceptor-ref name="checkPrivilege"></interceptor-ref>
+    			<interceptor-ref name="defaultStack"></interceptor-ref>
+    		</interceptor-stack>
+    	</interceptors>
+	
+	
+	
+		<!-- 全局的Result配置 -->
+		<global-results>
+			<result name="loginUI">/WEB-INF/jsp/userAction/loginUI.jsp</result>
+			<result name="noPrivilegeError">/noPrivilegeError.jsp</result>
+			<result name="noPrivilegeError2">/noPrivilegeError2.jsp</result>
+		</global-results>
+
+		<!-- 首页 -->
+		<action name="home_*" class="homeAction" method="{1}">
+			<result name="{1}">/WEB-INF/jsp/homeAction/{1}.jsp</result>
+		</action>
+
+		<!-- 人才信息管理 -->
+		<action name="talent_*" class="talentAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/talentAction/list.jsp
+			</result>
+			<result name="saveUI">/WEB-INF/jsp/talentAction/saveUI.jsp
+			</result>
+			<result name="editUI">/WEB-INF/jsp/talentAction/editUI.jsp
+			</result>
+			<result name="detailUI">/WEB-INF/jsp/talentAction/detailUI.jsp
+			</result>
+			<result name="toList" type="redirectAction">talent_list</result>
+			
+			<!-- 定义文件上传拦截器 -->
+			<interceptor-ref name="fileUpload">
+				<!-- 设置文件上传大小 -->
+				<param name="maximumSize">102400000</param>
+			</interceptor-ref>
+
+			<!-- 自定义了拦截器后必手动定义默认的拦截器，否则默认的拦截器不会被执行 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<!-- 文件下载 -->
+		<action name="download" class="fileDownloadAction">
+			<result name="success" type="stream">
+			<param name="contentType">application/octet-stream;charset=utf-8</param> 
+      	 	 <param name="contentDisposition">attachment;filename="${fileName}"</param>
+       		 <param name="inputName">downloadFile</param> 
+			</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+
+		<!-- 通讯录 -->
+		<action name="address_*" class="addressAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/talentAction/addresslist.jsp</result>
+			<result name="uploadUI">/WEB-INF/jsp/talentAction/uploadUI.jsp</result>
+			<result name="toAddressList" type="redirectAction">address_list</result>
+			
+			<!-- 定义文件上传拦截器 -->
+			<interceptor-ref name="fileUpload">
+				<!-- 设置文件上传大小 -->
+				<param name="maximumSize">102400000</param>
+			</interceptor-ref>
+
+			<!-- 自定义了拦截器后必手动定义默认的拦截器，否则默认的拦截器不会被执行 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<!-- 用户管理 -->
+	<action name="user_*" class="userAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/userAction/list.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/userAction/saveUI.jsp</result>
+			<result name="editUI">/WEB-INF/jsp/userAction/editUI.jsp</result>
+			<result name="toList" type="redirectAction">user_list</result>
+			<result name="logout">/WEB-INF/jsp/userAction/logout.jsp</result>
+			<result name="editpasswordUI">/WEB-INF/jsp/userAction/editPasswordUI.jsp</result>
+			<result name="toIndex">/index.jsp</result>
+	</action>
+		
+		<!-- 岗位管理 -->
+		<action name="role_*" class="roleAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/roleAction/list.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/roleAction/saveUI.jsp</result>
+			<result name="editUI">/WEB-INF/jsp/roleAction/editUI.jsp</result>
+			<result name="setPrivilegeUI">/WEB-INF/jsp/roleAction/setPrivilegeUI.jsp</result>
+			<result name="toList" type="redirectAction">role_list</result>
+		</action>
+		
+		<!-- 客户公司资料 -->
+		<action name="company_*" class="companyAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/companyAction/list.jsp
+			</result>
+			<result name="saveUI">/WEB-INF/jsp/companyAction/saveUI.jsp
+			</result>
+			<result name="editUI">/WEB-INF/jsp/companyAction/editUI.jsp
+			</result>
+			<result name="detailUI">/WEB-INF/jsp/companyAction/detailUI.jsp
+			</result>
+			<result name="toList" type="redirectAction">company_list</result>
+		</action>
+		
+		<!-- 查看职位管理 -->
+		<action name="job_*" class="jobAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/jobAction/list.jsp
+			</result>
+			<result name="saveUI">/WEB-INF/jsp/jobAction/saveUI.jsp
+			</result>
+			<result name="editUI">/WEB-INF/jsp/jobAction/editUI.jsp
+			</result>
+			<result name="detailUI">/WEB-INF/jsp/jobAction/detailUI.jsp
+			</result>
+			<result name="scheduleUI">/WEB-INF/jsp/jobAction/scheduleUI.jsp</result>
+			<result name="toList" type="redirectAction">job_list</result>
+		</action>
+		
+		<!-- 周工作计划表管理 -->
+		<action name="week_*" class="weekAction" method="{1}">
+			<result name="approvallist">/WEB-INF/jsp/weekAction/approvallist.jsp
+			</result>
+			<result name="mylist">/WEB-INF/jsp/weekAction/mylist.jsp
+			</result>
+			<result name="examineUI">/WEB-INF/jsp/weekAction/examineUI.jsp
+			</result>
+			<result name="saveUI">/WEB-INF/jsp/weekAction/saveUI.jsp
+			</result>
+			<result name="editUI">/WEB-INF/jsp/weekAction/editUI.jsp
+			</result>
+			<result name="detailUI">/WEB-INF/jsp/weekAction/detailUI.jsp
+			</result>
+			<result name="toMylist" type="redirectAction">week_mylist</result>
+			<result name="toApprovallist" type="redirectAction">week_approvallist</result>
+		</action>
+		
+		<!-- 季度工作重点管理 -->
+		<action name="quarter_*" class="quarterAction" method="{1}">
+			<result name="approvallist">/WEB-INF/jsp/quarterAction/approvallist.jsp
+			</result>
+			<result name="mylist">/WEB-INF/jsp/quarterAction/mylist.jsp
+			</result>
+			<result name="examineUI">/WEB-INF/jsp/quarterAction/examineUI.jsp
+			</result>
+			<result name="saveUI">/WEB-INF/jsp/quarterAction/saveUI.jsp
+			</result>
+			<result name="editUI">/WEB-INF/jsp/quarterAction/editUI.jsp
+			</result>
+			<result name="detailUI">/WEB-INF/jsp/quarterAction/detailUI.jsp
+			</result>
+			<result name="toMylist" type="redirectAction">quarter_mylist</result>
+			<result name="toApprovallist" type="redirectAction">quarter_approvallist</result>
+		</action>
+		
+		<!-- 潜在客户信息管理 -->
+		<action name="potential_*" class="potentialAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/potentialAction/list.jsp
+			</result>
+			<result name="saveUI">/WEB-INF/jsp/potentialAction/saveUI.jsp
+			</result>
+			<result name="editUI">/WEB-INF/jsp/potentialAction/editUI.jsp
+			</result>
+			<result name="detailUI">/WEB-INF/jsp/potentialAction/detailUI.jsp
+			</result>
+			<result name="toList" type="redirectAction">potential_list</result>
+		</action>
+		
+		<!-- 突发事件流转管理 -->
+		<action name="transfer_*" class="transferAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/transferAction/list.jsp
+			</result>
+			<result name="mylist">/WEB-INF/jsp/transferAction/mylist.jsp
+			</result>
+			<result name="saveUI">/WEB-INF/jsp/transferAction/saveUI.jsp
+			</result>
+			<result name="editUI">/WEB-INF/jsp/transferAction/editUI.jsp
+			</result>
+			<result name="detailUI">/WEB-INF/jsp/transferAction/detailUI.jsp
+			</result>
+			<result name="toList" type="redirectAction">transfer_list</result>
+			<result name="toMyList" type="redirectAction">transfer_mylist</result>
+		</action>
+		
+			<!-- 经营指标统计管理 -->
+		<action name="indicator_*" class="indicatorAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/indicatorAction/list.jsp</result>
+			<result name="uploadUI">/WEB-INF/jsp/indicatorAction/uploadUI.jsp</result>
+			<result name="toAddressList" type="redirectAction">indicator_list</result>
+			
+			<!-- 定义文件上传拦截器 -->
+			<interceptor-ref name="fileUpload">
+				<!-- 设置文件上传大小 -->
+				<param name="maximumSize">102400000</param>
+			</interceptor-ref>
+
+			<!-- 自定义了拦截器后必手动定义默认的拦截器，否则默认的拦截器不会被执行 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		
+		<!-- 付款明细管理 -->
+		<action name="payment_*" class="paymentAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/paymentAction/list.jsp
+			</result>
+			<result name="saveUI">/WEB-INF/jsp/paymentAction/saveUI.jsp
+			</result>
+			<result name="editUI">/WEB-INF/jsp/paymentAction/editUI.jsp
+			</result>
+			<result name="detailUI">/WEB-INF/jsp/paymentAction/detailUI.jsp
+			</result>
+			<result name="toList" type="redirectAction">payment_list</result>
+		</action>
+	</package>
+
+
+
+	<!-- Add packages here -->
+
+</struts>
