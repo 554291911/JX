@@ -56,7 +56,7 @@ public class RoleAction extends ModelDrivenBaseAction<Role> {
 		Role role = roleService.getById(model.getId());
 		ActionContext.getContext().getValueStack().push(role);
 
-		return "saveUI";
+		return "editUI";
 	}
 
 	/** 修改 */
