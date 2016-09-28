@@ -74,7 +74,7 @@ public class JobAction extends ModelDrivenBaseAction<Job>{
 
 	public String delete() throws Exception {
 		
-		talentService.delete(model.getId());
+		jobService.delete(model.getId());
 		return "toList";
 	}
 	
