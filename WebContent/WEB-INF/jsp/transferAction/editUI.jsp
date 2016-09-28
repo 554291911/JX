@@ -41,7 +41,7 @@
                     </tr>
                     <tr align="CENTER" valign="MIDDLE">	
 					<td><s:textfield name="time" cssClass="InputStyle2 a"/></td> 
-					 <td><s:textfield name="promoter" cssClass="InputStyle2" value="%{#session.user.name}" /></td>
+					 <td><s:textfield name="promoter"  value="%{#session.user.name}" readonly = "true"/></td>
 					 <td><s:textfield name="recipient" cssClass="InputStyle2" /><font color="red"><s:actionerror/></font></td>
 					</tr>
                     <s:iterator value="userForTransfers">
