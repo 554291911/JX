@@ -148,7 +148,7 @@
 		var tr = document.createElement("tr");
 		tr.className = "gzjl_item";
 		var td1 = document.createElement("td");
-		td1.innerHTML = "<input type='text' name='name'/>";
+		td1.innerHTML = "<input type='text' name='cName'/>";
 		tr.appendChild(td1);
 		var td2 = document.createElement("td");
 		td2.innerHTML = "<input type='text' name='phone'/>";
