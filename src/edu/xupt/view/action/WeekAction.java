@@ -1,9 +1,5 @@
 package edu.xupt.view.action;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.apache.catalina.manager.StatusTransformer;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -33,9 +29,9 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		TimeUtil nowdate = new TimeUtil();
 
 		// 更新
-		week.setStatus("未审批");
-		week.setTime(nowdate.getNowDate());
-		week.setSendstatus("已发送");
+		// week.setStatus("未审批");
+		// week.setTime(nowdate.getNowDate());
+		// week.setSendstatus("已发送");
 		weekService.update(week);
 		return "toMylist";
 	}
@@ -46,18 +42,14 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		if (!(statusType.trim().equals(""))) {
 			new QueryHelper(Week.class, "w")
 					//
-					.addCondition(!(yearType.trim().equals("")), "w.year=?",
-							yearType)
-					.addCondition(!(monthType.trim().equals("")), "w.month=?",
-							monthType)
+					.addCondition(!(yearType.trim().equals("")), "w.year=?", yearType)
+					.addCondition(!(monthType.trim().equals("")), "w.month=?", monthType)
 					.addCondition("w.status=?", statusType)
-					.addCondition(!(nameType.trim().equals("")),
-							"w.employeeName LIKE ?", "%" + nameType + "%")
+					.addCondition(!(nameType.trim().equals("")), "w.employeeName LIKE ?", "%" + nameType + "%")
 					.preparePageBean(weekService, pageNum, pageSize);
 		} else {
 			new QueryHelper(Week.class, "w")//
-					.addCondition("w.status=?", "未审批").preparePageBean(
-							weekService, pageNum, pageSize);
+					.addCondition("w.status=?", "未审批").preparePageBean(weekService, pageNum, pageSize);
 		}
 		return "approvallist";
 	}
@@ -68,14 +60,10 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		new QueryHelper(Week.class, "w")
 				//
 				.addCondition("user_id=?", user.getId())
-				.addCondition(!(yearType.trim().equals("")), "w.year=?",
-						yearType)
-				.addCondition(!(monthType.trim().equals("")), "w.month=?",
-						monthType)
-				.addCondition(!(statusType.trim().equals("")), "w.status=?",
-						statusType)
-				.addCondition(!(nameType.trim().equals("")),
-						"w.employeeName LIKE ?", "%" + nameType + "%")
+				.addCondition(!(yearType.trim().equals("")), "w.year=?", yearType)
+				.addCondition(!(monthType.trim().equals("")), "w.month=?", monthType)
+				.addCondition(!(statusType.trim().equals("")), "w.status=?", statusType)
+				.addCondition(!(nameType.trim().equals("")), "w.employeeName LIKE ?", "%" + nameType + "%")
 				.preparePageBean(weekService, pageNum, pageSize);
 
 		return "mylist";
@@ -90,8 +78,8 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 	/** 添加 */
 	public String save() throws Exception {
 		model.setUser(user);
-		model.setStatus("未开始");
-		model.setSendstatus("未发送");
+		// model.setStatus("未开始");
+		// model.setSendstatus("未发送");
 		weekService.save(model);
 		return "toMylist";
 	}
@@ -118,13 +106,13 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		Week week = weekService.getById(model.getId());
 
 		// 2，设置要修改的属性
-		week.setEmployeeName(model.getEmployeeName());
-		week.setEndDate(model.getEndDate());
-		week.setPlan(model.getPlan());
-		week.setReason(model.getReason());
-		week.setRemarks(model.getRemarks());
-		week.setSituationDescription(model.getSituationDescription());
-		week.setOutput(model.getOutput());
+		// week.setEmployeeName(model.getEmployeeName());
+		// week.setEndDate(model.getEndDate());
+		// week.setPlan(model.getPlan());
+		// week.setReason(model.getReason());
+		// week.setRemarks(model.getRemarks());
+		// week.setSituationDescription(model.getSituationDescription());
+		// week.setOutput(model.getOutput());
 
 		// 3，更新到数据库
 		weekService.update(week);
@@ -144,9 +132,9 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 	public String revoke() throws Exception {
 		Week week = weekService.getById(model.getId());
 
-		week.setStatus("未开始");
-		week.setTime("");
-		week.setSendstatus("未发送");
+		// week.setStatus("未开始");
+		// week.setTime("");
+		// week.setSendstatus("未发送");
 		weekService.update(week);
 
 		return "toMylist";
@@ -165,17 +153,17 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		// 准备数据
 		Week week = weekService.getById(model.getId());
 		// 2，设置要修改的属性
-		week.setEmployeeName(model.getEmployeeName());
-		week.setEndDate(model.getEndDate());
-		week.setPlan(model.getPlan());
-		week.setReason(model.getReason());
-		week.setRemarks(model.getRemarks());
-		week.setSituationDescription(model.getSituationDescription());
-		week.setOutput(model.getOutput());
-		week.setRemarks(model.getRemarks());
-		week.setStatus("已审批");
-		week.setSendstatus("未发送");
-		
+		// week.setEmployeeName(model.getEmployeeName());
+		// week.setEndDate(model.getEndDate());
+		// week.setPlan(model.getPlan());
+		// week.setReason(model.getReason());
+		// week.setRemarks(model.getRemarks());
+		// week.setSituationDescription(model.getSituationDescription());
+		// week.setOutput(model.getOutput());
+		// week.setRemarks(model.getRemarks());
+		// week.setStatus("已审批");
+		// week.setSendstatus("未发送");
+
 		weekService.update(week);
 		return "toApprovallist";
 	}
@@ -184,7 +172,7 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 	public String end() throws Exception {
 		Week week = weekService.getById(model.getId());
 
-		week.setStatus("已结束");
+		// week.setStatus("已结束");
 
 		weekService.update(week);
 		return "toApprovallist";
