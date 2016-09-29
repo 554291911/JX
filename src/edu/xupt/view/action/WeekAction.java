@@ -1,11 +1,14 @@
 package edu.xupt.view.action;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionContext;
 
 import edu.xupt.base.ModelDrivenBaseAction;
+import edu.xupt.entites.Candidate;
 import edu.xupt.entites.User;
 import edu.xupt.entites.Week;
 import edu.xupt.util.QueryHelper;
@@ -105,6 +108,16 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		// 1，从数据库中获取原对象
 		Week week = weekService.getById(model.getId());
 
+		List<Candidate> candidateList = candidateService.getCandidateByWeekId(model.getId());
+		
+		week.setCandidates(candidateList);
+		week.setEvaluation(model.getEvaluation());
+		week.setName(model.getName());
+		week.setNextManager(model.getNextManager());
+		week.setNextName(model.getNextName());
+		week.setNextQuestion(model.getNextQuestion());
+		week.setNextWeek(model.getNextWeek());
+		week.setPhoneNum(model.getPhoneNum());
 		// 2，设置要修改的属性
 		// week.setEmployeeName(model.getEmployeeName());
 		// week.setEndDate(model.getEndDate());

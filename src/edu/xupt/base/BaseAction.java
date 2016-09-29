@@ -8,6 +8,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import edu.xupt.entites.User;
 import edu.xupt.service.AddressService;
+import edu.xupt.service.CandidateService;
 import edu.xupt.service.CompanyService;
 import edu.xupt.service.IndicatorService;
 import edu.xupt.service.JobExperienceService;
@@ -100,6 +101,9 @@ protected PaymentService paymentService;
 
 @Resource
 protected UserForTransferService userForTransferService;
+
+@Resource
+protected CandidateService candidateService;
 /**
 * 获取当前登录的用户
 * 
