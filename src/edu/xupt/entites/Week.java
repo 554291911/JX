@@ -33,7 +33,8 @@ public class Week implements Serializable {
 	private String month;// 月
 	private String week;// 周
 	private List<Candidate> candidates = new ArrayList<Candidate>();// 工作输出结果
-
+	private String nextQuestion;
+	private String nextManager;
 	private User user;// 用户
 
 	@Id
@@ -142,6 +143,22 @@ public class Week implements Serializable {
 
 	public void setCandidates(List<Candidate> candidates) {
 		this.candidates = candidates;
+	}
+
+	public String getNextQuestion() {
+		return nextQuestion;
+	}
+
+	public void setNextQuestion(String nextQuestion) {
+		this.nextQuestion = nextQuestion;
+	}
+
+	public String getNextManager() {
+		return nextManager;
+	}
+
+	public void setNextManager(String nextManager) {
+		this.nextManager = nextManager;
 	}
 
 }
