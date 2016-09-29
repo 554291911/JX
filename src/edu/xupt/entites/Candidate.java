@@ -17,21 +17,13 @@ public class Candidate implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private Week weeks;
-	private String name;
+	private String cName;
 	private String phone;
 	private String customer;
 	private String bu;
 	private String job;
 	private String date;
 	private String status;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public String getPhone() {
 		return phone;
@@ -98,6 +90,14 @@ public class Candidate implements Serializable {
 
 	public void setWeeks(Week weeks) {
 		this.weeks = weeks;
+	}
+
+	public String getcName() {
+		return cName;
+	}
+
+	public void setcName(String cName) {
+		this.cName = cName;
 	}
 
 }
