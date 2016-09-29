@@ -1,11 +1,14 @@
 package edu.xupt.view.action;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionContext;
 
 import edu.xupt.base.ModelDrivenBaseAction;
+import edu.xupt.entites.Candidate;
 import edu.xupt.entites.User;
 import edu.xupt.entites.Week;
 import edu.xupt.util.QueryHelper;
@@ -15,10 +18,21 @@ import edu.xupt.util.TimeUtil;
 @Scope("prototype")
 public class WeekAction extends ModelDrivenBaseAction<Week> {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String yearType = "";
 	private String monthType = "";
 	private String statusType = "";
 	private String nameType = "";
+	private List<String> cName;
+	private List<String> phone;
+	private List<String> customer;
+	private List<String> bu;
+	private List<String> job;
+	private List<String> date;
+	private List<String> status;
 
 	User user = (User) ActionContext.getContext().getSession().get("user");
 
@@ -78,8 +92,25 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 	/** 添加 */
 	public String save() throws Exception {
 		model.setUser(user);
-		// model.setStatus("未开始");
-		// model.setSendstatus("未发送");
+		if (cName != null) {
+			for (int i = 0; i < cName.size(); i++) {
+				if (!(cName.get(i).trim().equals("")) && !(phone.get(i).trim().equals(""))
+						&& !(customer.get(i).trim().equals("")) && !(bu.get(i).trim().equals(""))
+						&& !(job.get(i).trim().equals("")) && !(date.get(i).trim().equals(""))
+						&& !(status.get(i).trim().equals(""))) {
+					Candidate c = new Candidate();
+					c.setcName(cName.get(i));
+					c.setPhone(phone.get(i));
+					c.setCustomer(customer.get(i));
+					c.setBu(bu.get(i));
+					c.setJob(job.get(i));
+					c.setDate(date.get(i));
+					c.setStatus(status.get(i));
+					c.setWeeks(model);
+					candidateService.save(c);
+				}
+			}
+		}
 		weekService.save(model);
 		return "toMylist";
 	}
@@ -218,4 +249,59 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		this.statusType = statusType;
 	}
 
+	public List<String> getcName() {
+		return cName;
+	}
+
+	public void setcName(List<String> cName) {
+		this.cName = cName;
+	}
+
+	public List<String> getPhone() {
+		return phone;
+	}
+
+	public void setPhone(List<String> phone) {
+		this.phone = phone;
+	}
+
+	public List<String> getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(List<String> customer) {
+		this.customer = customer;
+	}
+
+	public List<String> getBu() {
+		return bu;
+	}
+
+	public void setBu(List<String> bu) {
+		this.bu = bu;
+	}
+
+	public List<String> getJob() {
+		return job;
+	}
+
+	public void setJob(List<String> job) {
+		this.job = job;
+	}
+
+	public List<String> getDate() {
+		return date;
+	}
+
+	public void setDate(List<String> date) {
+		this.date = date;
+	}
+
+	public List<String> getStatus() {
+		return status;
+	}
+
+	public void setStatus(List<String> status) {
+		this.status = status;
+	}
 }
