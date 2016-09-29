@@ -24,7 +24,6 @@
 			<div id="Title_End"></div>
 		</div>
 	</div>
-</head>
 <!--显示表单内容-->
 <div id="MainArea">
 	<s:form action="week_save.action">
@@ -32,7 +31,7 @@
 			<div class="ItemBlock">
 				<!-- 标题-->
 				<div class="table-responsive" align="center">
-					<table class="table table-bordered" >
+					<table class="table table-bordered">
 						<thead>
 							<s:textfield name="year" />
 							年
@@ -63,13 +62,13 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><s:textfield name="year" /></td>
-								<td><s:textfield name="year" /></td>
-								<td><s:textfield name="year" /></td>
-								<td><s:textfield name="year" /></td>
-								<td><s:textfield name="year" /></td>
-								<td><s:textfield name="year" /></td>
-								<td><s:textfield name="year" /></td>
+								<td><s:textfield name="name" /></td>
+								<td><s:textfield name="recommend" /></td>
+								<td><s:textfield name="phoneNum" /></td>
+								<td><s:textfield name="evaluation" /></td>
+								<td><s:textfield name="nextWeek" /></td>
+								<td><s:textfield name="nextName" /></td>
+								<td><s:textfield name="other" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -106,7 +105,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td colspan="8"><s:textarea name="reason" cols="150"
+								<td colspan="8"><s:textarea name="nextQuestion" cols="150"
 										rows="5"></s:textarea></td>
 							</tr>
 						</tbody>
@@ -121,7 +120,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td colspan="8"><s:textarea name="reason" cols="150"
+								<td colspan="8"><s:textarea name="nextManager" cols="150"
 										rows="5"></s:textarea></td>
 							</tr>
 						</tbody>
@@ -149,25 +148,25 @@
 		var tr = document.createElement("tr");
 		tr.className = "gzjl_item";
 		var td1 = document.createElement("td");
-		td1.innerHTML = "<input type='text' name='startDate'/>";
+		td1.innerHTML = "<input type='text' name='name'/>";
 		tr.appendChild(td1);
 		var td2 = document.createElement("td");
-		td2.innerHTML = "<input type='text' name='company'/>";
+		td2.innerHTML = "<input type='text' name='phone'/>";
 		tr.appendChild(td2);
 		var td3 = document.createElement("td");
-		td3.innerHTML = "<input type='text' name='job'/>";
+		td3.innerHTML = "<input type='text' name='customer'/>";
 		tr.appendChild(td3);
 		var td4 = document.createElement("td");
-		td4.innerHTML = "<input type='text' name='company'/>";
+		td4.innerHTML = "<input type='text' name='bu'/>";
 		tr.appendChild(td4);
 		var td5 = document.createElement("td");
 		tr.appendChild(td5);
-		td5.innerHTML = "<input type='text' name='company'/>";
+		td5.innerHTML = "<input type='text' name='job'/>";
 		var td6 = document.createElement("td");
-		td6.innerHTML = "<input type='text' name='company'/>";
+		td6.innerHTML = "<input type='text' name='date'/>";
 		tr.appendChild(td6);
 		var td7 = document.createElement("td");
-		td7.innerHTML = "<input type='text' name='company'/>&nbsp;";
+		td7.innerHTML = "<input type='text' name='status'/>&nbsp;";
 		var button = document.createElement("input");
 		tr.appendChild(td7);
 		td7.appendChild(button);

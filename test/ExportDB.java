@@ -1,13 +1,16 @@
-import org.hibernate.cfg.Configuration;
-import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.hibernate.SessionFactory;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ExportDB {
-	public static void main(String[] args) {
-		// 读取配置文件
-		Configuration cfg = new Configuration().configure();
-		// 创建SchemaExport对象
-		SchemaExport export = new SchemaExport(cfg);
-		// 创建数据库表
-		export.create(true, true);
-	}
+	
+		private ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+	
+	// 测试SessionFactory
+		@Test
+		public void testSessionFactory() throws Exception {
+			SessionFactory sessionFactory = (SessionFactory) ac.getBean("sessionFactory");
+			System.out.println(sessionFactory);
+		}
 }
