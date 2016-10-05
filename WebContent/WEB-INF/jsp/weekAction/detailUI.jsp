@@ -71,8 +71,7 @@
 						<table class="table table-bordered">
 							<thead>
 								<tr>
-									<td colspan="8">二，截止到今日在流程中的候选人 <input type="button"
-										value="增加" onClick="addMore()" /></td>
+									<td colspan="8">二，截止到今日在流程中的候选人</td>
 								</tr>
 								<tr>
 									<td>姓名</td>
@@ -109,8 +108,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td colspan="8"><s:textarea name="nextQuestion" cols="150"
-											rows="5"></s:textarea></td>
+									<td colspan="8">${nextQuestion }</td>
 								</tr>
 							</tbody>
 						</table>
@@ -124,8 +122,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td colspan="8"><s:textarea name="nextManager" cols="150"
-											rows="5"></s:textarea></td>
+									<td colspan="8">${nextManager }</td>
 								</tr>
 							</tbody>
 						</table>

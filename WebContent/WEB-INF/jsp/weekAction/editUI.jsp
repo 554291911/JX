@@ -3,7 +3,7 @@
 
 <html xmlns="undefined">
 <head>
-<title>添加周工作计划</title>
+<title>周工作计划</title>
 	<%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
 	<link type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 	<link type="text/css" href="${pageContext.request.contextPath}/css/my.css" rel="stylesheet">

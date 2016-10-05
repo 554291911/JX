@@ -64,7 +64,7 @@
 				<s:iterator value="recordList">
 					<tr class="TableDetail1 template" align="center">
 						<td>${year}年${ month}月${week }周工作计划考核表</td>
-						<td>${employeeName }</td>
+						<td>${name }</td>
 						<td>${time }</td>
 						<td>${status }</td>
 						<td>
