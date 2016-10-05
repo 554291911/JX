@@ -26,7 +26,7 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 	private String monthType = "";
 	private String statusType = "";
 	private String nameType = "";
-	private List<String> cName;
+	private List<String> cname;
 	private List<String> phone;
 	private List<String> customer;
 	private List<String> bu;
@@ -92,14 +92,14 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 	/** 添加 */
 	public String save() throws Exception {
 		model.setUser(user);
-		if (cName != null) {
-			for (int i = 0; i < cName.size(); i++) {
-				if (!(cName.get(i).trim().equals("")) && !(phone.get(i).trim().equals(""))
+		if (cname != null) {
+			for (int i = 0; i < cname.size(); i++) {
+				if (!(cname.get(i).trim().equals("")) && !(phone.get(i).trim().equals(""))
 						&& !(customer.get(i).trim().equals("")) && !(bu.get(i).trim().equals(""))
 						&& !(job.get(i).trim().equals("")) && !(date.get(i).trim().equals(""))
 						&& !(status.get(i).trim().equals(""))) {
 					Candidate c = new Candidate();
-					c.setcName(cName.get(i));
+					c.setcName(cname.get(i));
 					c.setPhone(phone.get(i));
 					c.setCustomer(customer.get(i));
 					c.setBu(bu.get(i));
@@ -249,12 +249,12 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		this.statusType = statusType;
 	}
 
-	public List<String> getcName() {
-		return cName;
+	public List<String> getCname() {
+		return cname;
 	}
 
-	public void setcName(List<String> cName) {
-		this.cName = cName;
+	public void setCname(List<String> cname) {
+		this.cname = cname;
 	}
 
 	public List<String> getPhone() {
