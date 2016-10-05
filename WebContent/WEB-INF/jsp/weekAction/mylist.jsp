@@ -27,6 +27,13 @@ $(document).ready(function(){
 		}
 	}
 	
+	for( var i=0; i<$trs.length; i++ ){
+		var text = $($trs[i]).find(".f").html();
+		if( text == "已结束" ){
+			$($trs[i]).find(".e").hide();
+		}
+	}
+	
 	/*
 	var $tds = $(".a");
 	for( var i=0; i<$tds.length; i++ ){
@@ -89,15 +96,15 @@ $(document).ready(function(){
 				<s:iterator value="recordList">
 					<tr class="TableDetail1 template a" align="center">
 						<td>${year}年${ month}月${week }周工作计划考核表</td>
-						<td>${employeeName }</td>
+						<td>${name }</td>
 						<td>${time }</td>
-						<td>${status }</td>
+						<td class="f">${status }</td>
 						<td class="b">${sendstatus }</td>
 						<td>
 						<s:a action="week_detailUI?id=%{id}">查阅审批</s:a>&nbsp;
 						<s:a action="week_editUI?id=%{id}" cssClass="c" >编辑</s:a>
 						<s:a action="week_send?id=%{id}" cssClass="d"  onclick="return confirm('确定要发送给管理员吗？')">发送管理员</s:a>
-						<s:a action="week_revoke?id=%{id}" onclick="return confirm('确定要撤销吗？')">撤销</s:a>
+						<s:a action="week_revoke?id=%{id}" cssClass="e" onclick="return confirm('确定要撤销吗？')">撤销</s:a>
 						<s:a action="week_delete?id=%{id}" onclick="return confirm('确定要删除吗？')">删除</s:a>
 						</td>
 					</tr>

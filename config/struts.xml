@@ -15,12 +15,9 @@
 	<!-- 设置该应用使用的解码集 -->
 	<constant name="struts.i18n.encoding" value="utf-8" />
 	<!-- 上传过程中临时文件存放目录 -->
-	<constant name="struts.multipart.saveDir" value="E:\" />
+	<!-- <constant name="struts.multipart.saveDir" value="E:\" /> -->
 	<!-- 设置上传文件大小 最大10M -->
 	<constant name="struts.multipart.maxSize" value="10485760" />
-
-
-
 
 	<package name="default" namespace="/" extends="struts-default">
 	 

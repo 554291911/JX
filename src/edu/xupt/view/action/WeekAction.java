@@ -59,7 +59,7 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 					.addCondition(!(yearType.trim().equals("")), "w.year=?", yearType)
 					.addCondition(!(monthType.trim().equals("")), "w.month=?", monthType)
 					.addCondition("w.status=?", statusType)
-					.addCondition(!(nameType.trim().equals("")), "w.employeeName LIKE ?", "%" + nameType + "%")
+					.addCondition(!(nameType.trim().equals("")), "w.name LIKE ?", "%" + nameType + "%")
 					.preparePageBean(weekService, pageNum, pageSize);
 		} else {
 			new QueryHelper(Week.class, "w")//
@@ -77,7 +77,7 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 				.addCondition(!(yearType.trim().equals("")), "w.year=?", yearType)
 				.addCondition(!(monthType.trim().equals("")), "w.month=?", monthType)
 				.addCondition(!(statusType.trim().equals("")), "w.status=?", statusType)
-				.addCondition(!(nameType.trim().equals("")), "w.employeeName LIKE ?", "%" + nameType + "%")
+				.addCondition(!(nameType.trim().equals("")), "w.name LIKE ?", "%" + nameType + "%")
 				.preparePageBean(weekService, pageNum, pageSize);
 
 		return "mylist";

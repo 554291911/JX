@@ -166,7 +166,7 @@
 		td6.innerHTML = "<input type='text' name='date'/>";
 		tr.appendChild(td6);
 		var td7 = document.createElement("td");
-		td7.innerHTML = "<input type='text' name='status'/>&nbsp;";
+		td7.innerHTML = "<input type='text' name='cstatus'/>&nbsp;";
 		var button = document.createElement("input");
 		tr.appendChild(td7);
 		td7.appendChild(button);
