@@ -29,7 +29,7 @@ $(document).ready(function(){
 	
 	for( var i=0; i<$trs.length; i++ ){
 		var text = $($trs[i]).find(".f").html();
-		if( text == "已结束" ){
+		if( text == "已结束" || text == "未审批" || text == "未开始" ){
 			$($trs[i]).find(".e").hide();
 		}
 	}
