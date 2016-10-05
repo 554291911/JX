@@ -100,6 +100,7 @@ public abstract class BaseAction extends ActionSupport {
 
 	@Resource
 	protected UserForTransferService userForTransferService;
+
 	@Resource
 	protected CandidateService candidateService;
 

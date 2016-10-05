@@ -43,9 +43,9 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		TimeUtil nowdate = new TimeUtil();
 
 		// 更新
-		// week.setStatus("未审批");
-		// week.setTime(nowdate.getNowDate());
-		// week.setSendstatus("已发送");
+		 week.setStatus("未审批");
+		 week.setTime(nowdate.getNowDate());
+		 week.setSendstatus("已发送");
 		weekService.update(week);
 		return "toMylist";
 	}
@@ -111,6 +111,8 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 				}
 			}
 		}
+		model.setStatus("未开始");
+		model.setSendstatus("未发送");
 		weekService.save(model);
 		return "toMylist";
 	}
@@ -136,6 +138,16 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		// 1，从数据库中获取原对象
 		Week week = weekService.getById(model.getId());
 
+		List<Candidate> candidateList = candidateService.getCandidateByWeekId(model.getId());
+		
+		week.setCandidates(candidateList);
+		week.setEvaluation(model.getEvaluation());
+		week.setName(model.getName());
+		week.setNextManager(model.getNextManager());
+		week.setNextName(model.getNextName());
+		week.setNextQuestion(model.getNextQuestion());
+		week.setNextWeek(model.getNextWeek());
+		week.setPhoneNum(model.getPhoneNum());
 		// 2，设置要修改的属性
 		// week.setEmployeeName(model.getEmployeeName());
 		// week.setEndDate(model.getEndDate());
@@ -163,9 +175,9 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 	public String revoke() throws Exception {
 		Week week = weekService.getById(model.getId());
 
-		// week.setStatus("未开始");
-		// week.setTime("");
-		// week.setSendstatus("未发送");
+		 week.setStatus("未开始");
+		 week.setTime("");
+		 week.setSendstatus("未发送");
 		weekService.update(week);
 
 		return "toMylist";
@@ -192,8 +204,8 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		// week.setSituationDescription(model.getSituationDescription());
 		// week.setOutput(model.getOutput());
 		// week.setRemarks(model.getRemarks());
-		// week.setStatus("已审批");
-		// week.setSendstatus("未发送");
+		 week.setStatus("已审批");
+		 week.setSendstatus("未发送");
 
 		weekService.update(week);
 		return "toApprovallist";
@@ -203,7 +215,7 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 	public String end() throws Exception {
 		Week week = weekService.getById(model.getId());
 
-		// week.setStatus("已结束");
+		 week.setStatus("已结束");
 
 		weekService.update(week);
 		return "toApprovallist";

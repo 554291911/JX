@@ -24,7 +24,7 @@ public class Candidate implements Serializable {
 	private String job;
 	private String date;
 	private String status;
-
+	
 	public String getPhone() {
 		return phone;
 	}
