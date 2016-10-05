@@ -92,28 +92,23 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 	/** 添加 */
 	public String save() throws Exception {
 		model.setUser(user);
-		if (cname != null) {
-			for (int i = 0; i < cname.size(); i++) {
-				if (!(cname.get(i).trim().equals("")) && !(phone.get(i).trim().equals(""))
-						&& !(customer.get(i).trim().equals("")) && !(bu.get(i).trim().equals(""))
-						&& !(job.get(i).trim().equals("")) && !(date.get(i).trim().equals(""))
-						&& !(getCstatus().get(i).trim().equals(""))) {
-					Candidate c = new Candidate();
-					c.setCname(cname.get(i));
-					c.setPhone(phone.get(i));
-					c.setCustomer(customer.get(i));
-					c.setBu(bu.get(i));
-					c.setJob(job.get(i));
-					c.setDate(date.get(i));
-					c.setCstatus(getCstatus().get(i));
-					c.setWeeks(model);
-					candidateService.save(c);
-				}
-			}
-		}
 		model.setStatus("未开始");
 		model.setSendstatus("未发送");
 		weekService.save(model);
+		if (cname != null) {
+			for (int i = 0; i < cname.size(); i++) {
+				Candidate c = new Candidate();
+				c.setCname(cname.get(i).trim().equals("") ? "" : cname.get(i));
+				c.setPhone(phone.get(i).trim().equals("") ? "" : phone.get(i));
+				c.setCustomer(customer.get(i).trim().equals("") ? "" : customer.get(i));
+				c.setBu(bu.get(i).trim().equals("") ? "" : bu.get(i));
+				c.setJob(job.get(i).trim().equals("") ? "" : job.get(i));
+				c.setDate(date.get(i).trim().equals("") ? "" : date.get(i));
+				c.setCstatus(cstatus.get(i).trim().equals("") ? "" : cstatus.get(i));
+				c.setWeeks(model);
+				candidateService.save(c);
+			}
+		}
 		return "toMylist";
 	}
 
@@ -138,9 +133,6 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		// 1，从数据库中获取原对象
 		Week week = weekService.getById(model.getId());
 
-		List<Candidate> candidateList = candidateService.getCandidateByWeekId(model.getId());
-
-		week.setCandidates(candidateList);
 		week.setEvaluation(model.getEvaluation());
 		week.setName(model.getName());
 		week.setNextManager(model.getNextManager());
@@ -148,14 +140,7 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		week.setNextQuestion(model.getNextQuestion());
 		week.setNextWeek(model.getNextWeek());
 		week.setPhoneNum(model.getPhoneNum());
-		// 2，设置要修改的属性
-		// week.setEmployeeName(model.getEmployeeName());
-		// week.setEndDate(model.getEndDate());
-		// week.setPlan(model.getPlan());
-		// week.setReason(model.getReason());
-		// week.setRemarks(model.getRemarks());
-		// week.setSituationDescription(model.getSituationDescription());
-		// week.setOutput(model.getOutput());
+		candidateService.setCandidates(week, cname, phone, customer, bu, job, date, cstatus);
 
 		// 3，更新到数据库
 		weekService.update(week);
