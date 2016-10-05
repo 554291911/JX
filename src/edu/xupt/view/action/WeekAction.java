@@ -32,7 +32,7 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 	private List<String> bu;
 	private List<String> job;
 	private List<String> date;
-	private List<String> status;
+	private List<String> cstatus;
 
 	User user = (User) ActionContext.getContext().getSession().get("user");
 
@@ -43,9 +43,9 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		TimeUtil nowdate = new TimeUtil();
 
 		// 更新
-		 week.setStatus("未审批");
-		 week.setTime(nowdate.getNowDate());
-		 week.setSendstatus("已发送");
+		week.setStatus("未审批");
+		week.setTime(nowdate.getNowDate());
+		week.setSendstatus("已发送");
 		weekService.update(week);
 		return "toMylist";
 	}
@@ -97,15 +97,15 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 				if (!(cname.get(i).trim().equals("")) && !(phone.get(i).trim().equals(""))
 						&& !(customer.get(i).trim().equals("")) && !(bu.get(i).trim().equals(""))
 						&& !(job.get(i).trim().equals("")) && !(date.get(i).trim().equals(""))
-						&& !(status.get(i).trim().equals(""))) {
+						&& !(getCstatus().get(i).trim().equals(""))) {
 					Candidate c = new Candidate();
-					c.setcName(cname.get(i));
+					c.setCname(cname.get(i));
 					c.setPhone(phone.get(i));
 					c.setCustomer(customer.get(i));
 					c.setBu(bu.get(i));
 					c.setJob(job.get(i));
 					c.setDate(date.get(i));
-					c.setStatus(status.get(i));
+					c.setCstatus(getCstatus().get(i));
 					c.setWeeks(model);
 					candidateService.save(c);
 				}
@@ -139,7 +139,7 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		Week week = weekService.getById(model.getId());
 
 		List<Candidate> candidateList = candidateService.getCandidateByWeekId(model.getId());
-		
+
 		week.setCandidates(candidateList);
 		week.setEvaluation(model.getEvaluation());
 		week.setName(model.getName());
@@ -175,9 +175,9 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 	public String revoke() throws Exception {
 		Week week = weekService.getById(model.getId());
 
-		 week.setStatus("未开始");
-		 week.setTime("");
-		 week.setSendstatus("未发送");
+		week.setStatus("未开始");
+		week.setTime("");
+		week.setSendstatus("未发送");
 		weekService.update(week);
 
 		return "toMylist";
@@ -204,8 +204,8 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		// week.setSituationDescription(model.getSituationDescription());
 		// week.setOutput(model.getOutput());
 		// week.setRemarks(model.getRemarks());
-		 week.setStatus("已审批");
-		 week.setSendstatus("未发送");
+		week.setStatus("已审批");
+		week.setSendstatus("未发送");
 
 		weekService.update(week);
 		return "toApprovallist";
@@ -215,7 +215,7 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 	public String end() throws Exception {
 		Week week = weekService.getById(model.getId());
 
-		 week.setStatus("已结束");
+		week.setStatus("已结束");
 
 		weekService.update(week);
 		return "toApprovallist";
@@ -309,11 +309,11 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		this.date = date;
 	}
 
-	public List<String> getStatus() {
-		return status;
+	public List<String> getCstatus() {
+		return cstatus;
 	}
 
-	public void setStatus(List<String> status) {
-		this.status = status;
+	public void setCstatus(List<String> cstatus) {
+		this.cstatus = cstatus;
 	}
 }

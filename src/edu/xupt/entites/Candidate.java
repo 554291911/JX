@@ -17,14 +17,14 @@ public class Candidate implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private Week weeks;
-	private String cName;
 	private String phone;
 	private String customer;
 	private String bu;
 	private String job;
 	private String date;
-	private String status;
-	
+	private String cstatus;
+	private String cname;
+
 	public String getPhone() {
 		return phone;
 	}
@@ -65,14 +65,6 @@ public class Candidate implements Serializable {
 		this.date = date;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	@Id
 	@GeneratedValue
 	public int getId() {
@@ -92,12 +84,19 @@ public class Candidate implements Serializable {
 		this.weeks = weeks;
 	}
 
-	public String getcName() {
-		return cName;
+	public String getCname() {
+		return cname;
 	}
 
-	public void setcName(String cName) {
-		this.cName = cName;
+	public void setCname(String cname) {
+		this.cname = cname;
 	}
 
+	public String getCstatus() {
+		return cstatus;
+	}
+
+	public void setCstatus(String cstatus) {
+		this.cstatus = cstatus;
+	}
 }
