@@ -47,6 +47,7 @@ public class CandidateServiceImpl extends DaoSupportImpl<Candidate>implements Ca
 			c.setJob(job.get(i).trim().equals("") ? "" : job.get(i));
 			c.setDate(date.get(i).trim().equals("") ? "" : date.get(i));
 			c.setCstatus(cstatus.get(i).trim().equals("") ? "" : cstatus.get(i));
+			c.setWeeks(week);
 			newCandidates.add(c);
 		}
 		eliminate(weeks_id);

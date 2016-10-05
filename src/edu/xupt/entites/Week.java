@@ -37,7 +37,7 @@ public class Week implements Serializable {
 	private String status;//状态
 	private String time;//申请时间
 	private String sendstatus;//发送状态
-	
+	private String approval;//审批意见
 	
 	private User user;// 用户
 	
@@ -187,6 +187,14 @@ public class Week implements Serializable {
 
 	public void setTime(String time) {
 		this.time = time;
+	}
+
+	public String getApproval() {
+		return approval;
+	}
+
+	public void setApproval(String approval) {
+		this.approval = approval;
 	}
 	
 }

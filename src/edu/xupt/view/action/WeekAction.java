@@ -140,6 +140,7 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		week.setNextQuestion(model.getNextQuestion());
 		week.setNextWeek(model.getNextWeek());
 		week.setPhoneNum(model.getPhoneNum());
+		week.setStatus("未审批");
 		candidateService.setCandidates(week, cname, phone, customer, bu, job, date, cstatus);
 
 		// 3，更新到数据库
@@ -189,6 +190,7 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 		// week.setSituationDescription(model.getSituationDescription());
 		// week.setOutput(model.getOutput());
 		// week.setRemarks(model.getRemarks());
+		week.setApproval(model.getApproval());
 		week.setStatus("已审批");
 		week.setSendstatus("未发送");
 

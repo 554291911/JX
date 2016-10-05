@@ -127,6 +127,20 @@
 							</tbody>
 						</table>
 					</div>
+					<div class="table-responsive">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<td colspan="8">审批意见</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="8">${approval }</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 				</div>
 			</div>
 		</div>

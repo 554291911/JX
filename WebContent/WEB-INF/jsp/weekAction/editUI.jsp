@@ -89,7 +89,7 @@
 						<tbody id="more">
 					<s:iterator value="candidates">
 							<tr id="${id }">
-								<td><input type="text" name="cname" value="${cName }"/></td>
+								<td><input type="text" name="cname" value="${cname }"/></td>
 								<td><input type="text" name="phone" value="${phone }"/></td>
 								<td><input type="text" name="customer" value="${customer }"/></td>
 								<td><input type="text" name="bu" value="${bu }"/></td>
