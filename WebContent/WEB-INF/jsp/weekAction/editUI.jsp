@@ -95,7 +95,7 @@
 								<td><input type="text" name="bu" value="${bu }"/></td>
 								<td><input type="text" name="job" value="${job }"/></td>
 								<td><input type="text" name="date" value="${date }"/></td>
-								<td><input type="text" name="status" value="${status }"/>&nbsp<input type="button" value="删除"
+								<td><input type="text" name="cstatus" value="${cstatus }"/>&nbsp<input type="button" value="删除"
 									onclick="del_tr(${id});" /></td>
 							</tr>
 						</s:iterator>
@@ -173,7 +173,7 @@
 		td6.innerHTML = "<input type='text' name='date'/>";
 		tr.appendChild(td6);
 		var td7 = document.createElement("td");
-		td7.innerHTML = "<input type='text' name='status'/>&nbsp;";
+		td7.innerHTML = "<input type='text' name='cstatus'/>&nbsp;";
 		var button = document.createElement("input");
 		tr.appendChild(td7);
 		td7.appendChild(button);

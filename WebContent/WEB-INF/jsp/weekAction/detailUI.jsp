@@ -92,7 +92,7 @@
 										<td>${bu }</td>
 										<td>${job }</td>
 										<td>${date }</td>
-										<td>${status }</td>
+										<td>${cstatus }</td>
 									</tr>
 								</s:iterator>
 							</tbody>
