@@ -1,6 +1,5 @@
 package edu.xupt.base;
 
-
 import javax.annotation.Resource;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -28,7 +27,7 @@ import edu.xupt.service.WeekService;
 
 public abstract class BaseAction extends ActionSupport {
 
-	//============  分页用的参数  ==================
+	// ============ 分页用的参数 ==================
 
 	protected int pageNum = 1; // 当前页
 	protected int pageSize = 15; // 每页显示多少条记录
@@ -49,68 +48,69 @@ public abstract class BaseAction extends ActionSupport {
 		this.pageSize = pageSize;
 	}
 
-// =============== Service实例的声明 ==================
+	// =============== Service实例的声明 ==================
 
-@Resource
-protected TalentService talentService;//人才service管理
+	@Resource
+	protected TalentService talentService;// 人才service管理
 
-@Resource
-protected JobExperienceService jobExperienceService;//职位经历service管理
+	@Resource
+	protected JobExperienceService jobExperienceService;// 职位经历service管理
 
-@Resource
-protected AddressService addressService; //通讯录service管理
+	@Resource
+	protected AddressService addressService; // 通讯录service管理
 
-@Resource
-protected UserService userService;
+	@Resource
+	protected UserService userService;
 
-@Resource
-protected PrivilegeService privilegeService;
+	@Resource
+	protected PrivilegeService privilegeService;
 
-@Resource
-protected RoleService roleService;
+	@Resource
+	protected RoleService roleService;
 
-@Resource
-protected CompanyService companyService;
+	@Resource
+	protected CompanyService companyService;
 
-@Resource
-protected JunctionService junctionService;
+	@Resource
+	protected JunctionService junctionService;
 
-@Resource
-protected JobService jobService;
+	@Resource
+	protected JobService jobService;
 
-@Resource
-protected JobProgressService jobProgressSerivce;
+	@Resource
+	protected JobProgressService jobProgressSerivce;
 
-@Resource
-protected WeekService weekService;
+	@Resource
+	protected WeekService weekService;
 
-@Resource
-protected QuarterService quarterService;
+	@Resource
+	protected QuarterService quarterService;
 
-@Resource
-protected PotentialService potentialService;
+	@Resource
+	protected PotentialService potentialService;
 
-@Resource
-protected TransferService transferService;
+	@Resource
+	protected TransferService transferService;
 
-@Resource
-protected IndicatorService indicatorService;
+	@Resource
+	protected IndicatorService indicatorService;
 
-@Resource
-protected PaymentService paymentService;
+	@Resource
+	protected PaymentService paymentService;
 
-@Resource
-protected UserForTransferService userForTransferService;
+	@Resource
+	protected UserForTransferService userForTransferService;
 
-@Resource
-protected CandidateService candidateService;
-/**
-* 获取当前登录的用户
-* 
-* @return
-*/
-protected User getCurrentUser() {
-return (User) ActionContext.getContext().getSession().get("user");
-}
+	@Resource
+	protected CandidateService candidateService;
+
+	/**
+	 * 获取当前登录的用户
+	 * 
+	 * @return
+	 */
+	protected User getCurrentUser() {
+		return (User) ActionContext.getContext().getSession().get("user");
+	}
 
 }

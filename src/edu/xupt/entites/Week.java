@@ -17,10 +17,9 @@ import javax.persistence.Table;
 @Table(name = "t_week")
 public class Week implements Serializable {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private String name;// 员工姓名
 	private String recommend;// 推荐量
@@ -35,8 +34,13 @@ public class Week implements Serializable {
 	private List<Candidate> candidates = new ArrayList<Candidate>();// 工作输出结果
 	private String nextQuestion;
 	private String nextManager;
+	private String status;//状态
+	private String time;//申请时间
+	private String sendstatus;//发送状态
+	
+	
 	private User user;// 用户
-
+	
 	@Id
 	@GeneratedValue
 	public int getId() {
@@ -161,4 +165,28 @@ public class Week implements Serializable {
 		this.nextManager = nextManager;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getSendstatus() {
+		return sendstatus;
+	}
+
+	public void setSendstatus(String sendstatus) {
+		this.sendstatus = sendstatus;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+	
 }
