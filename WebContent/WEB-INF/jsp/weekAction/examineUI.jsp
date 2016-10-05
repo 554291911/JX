@@ -90,7 +90,7 @@
 						<tbody id="more">
 					<s:iterator value="candidates">
 							<tr id="${id }">
-								<td><input type="text" name="cName" value="${cName }"/></td>
+								<td><input type="text" name="cname" value="${cName }"/></td>
 								<td><input type="text" name="phone" value="${phone }"/></td>
 								<td><input type="text" name="customer" value="${customer }"/></td>
 								<td><input type="text" name="bu" value="${bu }"/></td>
@@ -154,7 +154,7 @@
 		var tr = document.createElement("tr");
 		tr.className = "gzjl_item";
 		var td1 = document.createElement("td");
-		td1.innerHTML = "<input type='text' name='cName'/>";
+		td1.innerHTML = "<input type='text' name='cname'/>";
 		tr.appendChild(td1);
 		var td2 = document.createElement("td");
 		td2.innerHTML = "<input type='text' name='phone'/>";

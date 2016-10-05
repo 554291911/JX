@@ -86,7 +86,7 @@
 							<tbody id="more">
 								<s:iterator value="candidates">
 									<tr id="${id }">
-										<td>${cName}</td>
+										<td>${cname}</td>
 										<td>${phone }</td>
 										<td>${customer }</td>
 										<td>${bu }</td>
