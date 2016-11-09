@@ -76,6 +76,7 @@ public class Installer {
 		session.save(new Privilege("人才信息添加", "/talent_save", menu21));
 		session.save(new Privilege("人才信息修改", "/talent_edit", menu21));
 		session.save(new Privilege("人才信息查看", "/talent_detail", menu21));
+		session.save(new Privilege("简历全部下载权限", "/jianlixiazai", menu21));
 		
 		session.save(new Privilege("通讯录列表", "/address_list", menu22));
 		session.save(new Privilege("删除通讯录", "/address_delete", menu22));

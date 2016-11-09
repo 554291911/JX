@@ -17,7 +17,8 @@ import javax.persistence.Table;
 @Table(name="t_talent")
 public class Talent implements Serializable{
 	
-	
+	private String creator;//创建人
+	private String modifer;//修改人
 	private User user;
 	private String username;
 	private int id;
@@ -41,6 +42,9 @@ public class Talent implements Serializable{
 	private String photoUrl;//照片存放地址
 	private String oldResumeName;//原始简历
 	private String standardResumeName;//标准简历
+	private String disposition;//个人性格
+	private String company;//现公司
+	private String experience;//工作经历
 	private List<JobExperience> jobExperiences = new ArrayList<JobExperience>();//职位经历
 
 	@Id
@@ -241,6 +245,46 @@ public class Talent implements Serializable{
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getDisposition() {
+		return disposition;
+	}
+
+	public void setDisposition(String disposition) {
+		this.disposition = disposition;
+	}
+
+	public String getCreator() {
+		return creator;
+	}
+
+	public void setCreator(String creator) {
+		this.creator = creator;
+	}
+
+	public String getModifer() {
+		return modifer;
+	}
+
+	public void setModifer(String modifer) {
+		this.modifer = modifer;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public String getExperience() {
+		return experience;
+	}
+
+	public void setExperience(String experience) {
+		this.experience = experience;
 	}
 	
 }

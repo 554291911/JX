@@ -38,11 +38,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <s:select  name="firstDegreeType" headerKey="" headerValue="请选择第一学历"
          list="{'小学', '初中', '高中', '专科', '本科', '硕士研究生', '博士研究生', '博士后'}"/>  
 						请输入现任职位关键字 ：<s:textfield name="jobCondition" cssClass="InputStyle2" /> 
-						请输入过往公司关键字 ：<s:textfield name="companyCondition"  cssClass="InputStyle2" />
+						<%-- 请输入过往公司关键字 ：<s:textfield name="companyCondition"  cssClass="InputStyle2" /> --%>
+					</table>
+				</div>
+</div>
+<div id="TableTail">
+				<div id="TableTail_inside">
+					<table border="0" cellspacing="0" cellpadding="0" height="100%" align="left">
+						请输入个人特点关键字 ：<s:textfield name="character"  cssClass="InputStyle2" />
 						<input type="IMAGE" src="${pageContext.request.contextPath}/style/blue/images/button/submit.PNG" align="ABSMIDDLE"/>
 					</table>
 				</div>
-			</div>
+</div>
 <div id="MainArea">
     <table cellspacing="0" cellpadding="0" class="TableStyle">
        
@@ -54,8 +61,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <td  >岗位级别</td>
                 <td >出生日期</td>
 				<td >第一学历</td>
-				<td>过往公司</td>
+				<!-- <td>过往公司</td> -->
+				<td>目前公司</td>
 				<td >现任职位</td>
+				<td >个人特点</td>
+				<td >操作人</td>
 				<td >其他操作</td>
             </tr>
 			
@@ -72,12 +82,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td>${birthday }</td>
 				<td>${firstDegree }</td>
 				<td>
-				<s:iterator value="jobExperiences">
+				${company }
+				</td>
+				<%-- <s:iterator value="jobExperiences">
 					${company }
 					<br />
-				</s:iterator>
-				</td>
+				</s:iterator> --%>
 				<td>${position }</td>
+				<td>${disposition }</td>
+				<td>${modifer }</td>
 				<td><s:a action="talent_detailUI?id=%{id}">查看详细</s:a>&nbsp;
 					<s:a action="talent_editUI?id=%{id}">编辑</s:a>&nbsp;
 					<s:a action="talent_delete?id=%{id}" onclick="return confirm('确定要删除吗？')">删除</s:a>

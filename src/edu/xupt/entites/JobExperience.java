@@ -19,7 +19,8 @@ public class JobExperience implements java.io.Serializable {
 	private String company;
 	private String job;
 	private Talent talent;
-
+	private String duty;//职责
+	private String kpi;//绩效
 	public JobExperience() {
 	}
 
@@ -78,4 +79,21 @@ public class JobExperience implements java.io.Serializable {
 	public void setTalent(Talent talent) {
 		this.talent = talent;
 	}
+
+	public String getDuty() {
+		return duty;
+	}
+
+	public void setDuty(String duty) {
+		this.duty = duty;
+	}
+
+	public String getKpi() {
+		return kpi;
+	}
+
+	public void setKpi(String kpi) {
+		this.kpi = kpi;
+	}
+	
 }

@@ -1,8 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
 
@@ -17,7 +16,15 @@
 	rel="stylesheet">
 <link type="text/css"
 	href="${pageContext.request.contextPath}/css/my.css" rel="stylesheet">
-
+  <style type="text/css">
+        pre{
+           white-space: pre-wrap;       
+           white-space: -moz-pre-wrap;  
+           white-space: -pre-wrap;      
+           white-space: -o-pre-wrap;    
+           word-wrap: break-word;       
+        }
+   </style>
 </head>
 <body>
 
@@ -37,113 +44,156 @@
 
 	<!--显示表单内容-->
 	<div id=MainArea>
- 	<s:form>
-		<!-- 表单内容显示 -->
-		<div class="ItemBlockBorder">
-			<div class="ItemBlock">
-				<table class="table table-bordered">
-					<thead align="left">
-						<th colspan="3">个人资料</th>
-					</thead>
-					<tr>
-						<td colspan="2">姓名:${name }</td>
-					
-						<td rowspan="7"><s:iterator id="imgUrl" value="photoUrl">
-								<br />
-								<img src="${imgUrl}" height="200px" width="200px" />
-							</s:iterator></td>
-					</tr>
-					<tr><td>婚姻状况:
-        ${isMarried }
-		 </td>
-		 <td>有无子女 ：
-		 ${hasChildren }
-		 </tr>
-					<tr>
-						<td>出生年月: ${birthday }
-						<td>岗位级别: ${postLevel }</td>
-
-					</tr>
-					<tr>
-						<td>性别: ${sex }
-						<td>联系电话: ${phoneNumber }
-					</tr>
-					<tr>
-						<td>第一学历: ${firstDegree }</td>
-						<td>最高学历: ${highestDegree }</td>
-					</tr>
-					<tr>
-					<td>现任职位:${position }</td>
-						<td >邮&nbsp;&nbsp;箱: ${email }</td>
-					</tr>
-					<tr>
-						<td colspan="2">现所在地: ${address }
-					</tr>
-					<thead>
-						<th colspan="3">教育经历</th>
-					</thead>
-					<tr>
-						<td colspan="3">${eduExperience }</td>
-					</tr>
-					<thead>
-						<th colspan="3">工作经历</th>
-					</thead>
-					<tr>
-						<td>工作时间</td>
-						<td>所在公司</td>
-						<td>所在职位</td>
-					</tr>
-
-					<s:iterator value="jobExperiences">
+		<s:form>
+			<!-- 表单内容显示 -->
+			<div class="ItemBlockBorder">
+				<div class="ItemBlock">
+					<table class="table table-bordered">
+						<thead align="left">
+							<th colspan="3">个人资料</th>
+						</thead>
 						<tr>
-							<td>${startDate } 至 ${ endDate}</td>
-							<td>${company }</td>
-							<td>${job }</td>
+							<td>姓名:${name }</td>
+							<td>邮&nbsp;&nbsp;箱: ${email }
+							</td>
+							<td rowspan="7"><s:iterator id="imgUrl" value="photoUrl">
+									<br />
+									<img src="${imgUrl}" height="200px" width="200px" />
+								</s:iterator></td>
 						</tr>
-					</s:iterator>
-					<thead>
-						<th colspan="3">期望职位</th>
-					</thead>
-					<tr>
-						<td colspan="3">${hopeJob }</td>
-					</tr>
-					<thead>
-						<th colspan="3">待遇水平</th>
-					</thead>
-					<tr>
-						<td colspan="3">${treatmentLevel }</td>
-					</tr>
-					<thead>
-						<th colspan="3">期望待遇</th>
-					</thead>
-					<tr>
-						<td colspan="3">${hopeTreatment }</td>
-					</tr>
-					<thead>
-						<th colspan="3">整体评价</th>
-					</thead>
-					<tr>
-						<td colspan="3">${description }</td>
-					</tr>
-					<thead>
-						<th colspan="3">简历</th>
-					</thead>
-					<tr>
-						<td colspan="1"><a
-							href="word/${oldResumeName }" onclick="return confirm('确定要下载吗？')">${oldResumeName}</a></td>
-						<td colspan="2"><a
-							href="word/${standardResumeName }" onclick="return confirm('确定要下载吗？')">${standardResumeName }</a></td>
-					</tr>
-				</table>
-			</div>
-		</div>
-		<!-- 表单操作 -->
-		<div id="InputDetailBar">
-			<a href="javascript:history.go(-1);"><button type="button"
-					class="btn btn-default">返回</button></a>
+						<tr>
+							<td>婚姻状况: ${isMarried }</td>
+							<td>有无子女 ： ${hasChildren }
+						</tr>
+						<tr>
+							<td>出生年月: ${birthday }
+							<td>岗位级别: ${postLevel }</td>
 
-		</div>
-		
+						</tr>
+						<tr>
+							<td>性别: ${sex }
+							<td>联系电话: ${phoneNumber }
+						</tr>
+						<tr>
+							<td>第一学历: ${firstDegree }</td>
+							<td>最高学历: ${highestDegree }</td>
+						</tr>
+						<tr>
+							<td>目前公司:${company }</td>
+							<td>现任职位:${position }</td>
+						</tr>
+						<tr>
+							<td colspan="2">现所在地: ${address }
+						</tr>
+						<thead>
+							<th colspan="3">教育经历</th>
+						</thead>
+						<tr>
+							<td colspan="3">${eduExperience }</td>
+						</tr>
+						<thead>
+							<th colspan="3">工作经历</th>
+						</thead>
+						<tr>
+							<td colspan="3">
+							<pre>${experience}</pre>
+							</td>
+						</tr>
+						<%-- <s:iterator value="jobExperiences">
+						<tr>
+							<td><h4>工作时间</h4></td>
+							<td><h4>所在公司</h4></td>
+							<td><h4>所在职位</h4></td>
+						</tr>
+							<tr>
+								<td>${startDate }至 ${ endDate}</td>
+								<td>${company }</td>
+								<td>${job }</td>
+							</tr>
+							<tr>
+							<td colspan="3"><h4>岗位职责</h4></td>
+							</tr>
+							<tr>
+							<td colspan="3">${duty }</td>
+							</tr>
+							<tr>
+							<td colspan="3"><h4>工作业绩</h4></td>
+							</tr>
+							<tr>
+							<td colspan="3">${kpi }</td>
+							</tr>
+						</s:iterator> --%>
+						<thead>
+							<th colspan="3">期望职位</th>
+						</thead>
+						<tr>
+							<td colspan="3">${hopeJob }</td>
+						</tr>
+						<thead>
+							<th colspan="3">待遇水平</th>
+						</thead>
+						<tr>
+							<td colspan="3">${treatmentLevel }</td>
+						</tr>
+						<thead>
+							<th colspan="3">期望待遇</th>
+						</thead>
+						<tr>
+							<td colspan="3">${hopeTreatment }</td>
+						</tr>
+						<thead>
+							<th colspan="3">整体评价</th>
+						</thead>
+						<tr>
+							<td colspan="3">
+							<pre>${description }</pre>
+							</td>
+						</tr>
+						
+						<s:if test="#session.user.hasPrivilegeByName('简历全部下载权限')">
+						<thead>
+							<th colspan="3">简历</th>
+						</thead>
+						<tr>
+							<td colspan="1"><a href="word/${oldResumeName }"
+								onclick="return confirm('确定要下载吗？')">${oldResumeName}</a></td>
+							<td colspan="2"><a href="word/${standardResumeName }"
+								onclick="return confirm('确定要下载吗？')">${standardResumeName }</a></td>
+						</tr>
+						</s:if>
+						<s:else>
+           					<thead>
+							<th colspan="3">简历</th>
+						</thead>
+						<tr>
+							 <s:if test="#session.user.name == creator">
+							<td colspan="1"><a href="word/${oldResumeName }"
+								onclick="return confirm('确定要下载吗？')">${oldResumeName}</a></td>
+							<td colspan="2"><a href="word/${standardResumeName }"
+								onclick="return confirm('确定要下载吗？')">${standardResumeName }</a></td>
+							</s:if>
+							<s:else>
+							<td colspan="1">${oldResumeName}</a></td>
+							<td colspan="2">${standardResumeName }</a></td>
+							</s:else>
+						</tr>
+        				</s:else>
+						<thead>
+							<th colspan="3">个人特点</th>
+						</thead>
+						<tr>
+							<td colspan="3">${disposition }</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<!-- 表单操作 -->
+			<div id="InputDetailBar">
+				<a href="javascript:history.go(-1);"><button type="button"
+						class="btn btn-default">返回</button></a>
+
+			</div>
+
 		</s:form>
 	</div>
 </body>

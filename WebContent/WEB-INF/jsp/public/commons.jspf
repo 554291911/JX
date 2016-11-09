@@ -5,13 +5,13 @@
 <link type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link type="text/css" href="${pageContext.request.contextPath}/css/my.css" rel="stylesheet">
 -->
-<script language="JavaScript" src="${pageContext.request.contextPath}/script/jquery-2.1.4.min.js"></script>
+<script language="JavaScript" src="${pageContext.request.contextPath}/script/jquery-2.1.4.min.js"></script> 
+<script language="JavaScript" src="http://www.jq22.com/demo/easy-141122170823/easyform.js"></script> 
+<%-- <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script> --%>
 <script language="JavaScript" src="${pageContext.request.contextPath}/script/bootstrap.min.js"></script>
-<script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
 <script language="javascript" src="${pageContext.request.contextPath}/script/PageUtils.js" charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/blue/pageCommon.css" />
 <script type="text/javascript">
-	
 
 	
 </script>

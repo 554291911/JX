@@ -30,7 +30,7 @@ public class JobExperienceServiceImpl extends DaoSupportImpl<JobExperience>
 
 	@Override
 	public void setJobExperiences(Talent talent, List<String> startDate,
-			List<String> endDate, List<String> job, List<String> company) {
+			List<String> endDate, List<String> job, List<String> company,  List<String> duty, List<String> kpi) {
 		
 		int talent_id = talent.getId();
 		int size = 0;
@@ -42,18 +42,27 @@ public class JobExperienceServiceImpl extends DaoSupportImpl<JobExperience>
 			size = endDate.size();
 		else if (job != null)
 			size = job.size();
+		else if (duty != null)
+			size = duty.size();
+		else if (kpi != null)
+			size = kpi.size();
+		
 
 		List<JobExperience> newJobExperiences = new ArrayList<JobExperience>();
 		for (int i = 0; i < size; i++) {
 			if (!(startDate.get(i).trim().equals(""))
 					&& !(endDate.get(i).trim().equals(""))
 					&& !(company.get(i).trim().equals(""))
-					&& !(job.get(i).trim().equals(""))) {
+					&& !(job.get(i).trim().equals(""))
+					&& !(duty.get(i).trim().equals(""))
+					&& !(kpi.get(i).trim().equals(""))) {
 				JobExperience jobExperience = new JobExperience(talent);
 				jobExperience.setStartDate(startDate.get(i));
 				jobExperience.setEndDate(endDate.get(i));
 				jobExperience.setJob(job.get(i));
 				jobExperience.setCompany(company.get(i));
+				jobExperience.setDuty(duty.get(i));
+				jobExperience.setKpi(kpi.get(i));
 				newJobExperiences.add(jobExperience);
 			}
 		}

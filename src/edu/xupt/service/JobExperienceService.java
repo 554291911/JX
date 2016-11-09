@@ -13,5 +13,5 @@ public interface JobExperienceService extends DaoSupport<JobExperience>{
 	public <JobExperience> void eliminate(int talent_id);
 
 	void setJobExperiences(Talent talent, List<String> startDate,
-			List<String> endDate, List<String> job, List<String> company);
+			List<String> endDate, List<String> job, List<String> company, List<String> duty, List<String> kpi);
 }

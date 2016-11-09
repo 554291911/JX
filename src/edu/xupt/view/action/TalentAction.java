@@ -3,11 +3,6 @@ package edu.xupt.view.action;
 import java.io.File;
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -40,6 +35,9 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 	private List<String> endDate;
 	private List<String> company;
 	private List<String> job;
+	private List<String> duty;
+	private List<String> kpi;
+	
 
 	// 获取照片
 	private File photo;
@@ -59,7 +57,7 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 	private String jobCondition = "";
 	private String companyCondition = "";
 	private String firstDegreeType = "";// 第一学历查询
-
+	private String character = "";//个人性格
 	// 获取登录信息
 	User user = getCurrentUser();
 
@@ -76,9 +74,15 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 			.addCondition(!(jobCondition.equals("")),
 					"t.position LIKE ?",
 					"%" + jobCondition.trim() + "%")
-					.addCondition(!(companyCondition.equals("")),
+			.addCondition(!(companyCondition.equals("")),
 							"j.company LIKE ?",
 							"%" + companyCondition.trim() + "%")
+			.addCondition(!(jobCondition.equals("")),
+							"t.position LIKE ?",
+							"%" + jobCondition.trim() + "%")
+			.addCondition(!(character.equals("")),
+									"t.disposition LIKE ?",
+									"%" + character.trim() + "%")
 			.preparePageBean(talentService, pageNum, pageSize);
 			}else{
 				new QueryHelper(Talent.class, "t")
@@ -90,6 +94,9 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 				.addCondition(!(jobCondition.equals("")),
 						"t.position LIKE ?",
 						"%" + jobCondition.trim() + "%")
+				.addCondition(!(character.equals("")),
+						"t.disposition LIKE ?",
+						"%" + character.trim() + "%")
 				.preparePageBean(talentService, pageNum, pageSize);
 			}
 		}
@@ -108,7 +115,10 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 						.addCondition(!(companyCondition.equals("")),
 								"j.company LIKE ?",
 								"%" + companyCondition.trim() + "%")
-								.addCondition("t.user=?", user)
+						.addCondition(!(character.equals("")),
+								"t.disposition LIKE ?",
+								"%" + character.trim() + "%")
+								/*.addCondition("t.user=?", user)*/
 						.preparePageBean(talentService, pageNum, pageSize);
 				}
 		else{
@@ -121,7 +131,10 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 						levelType)
 				.addCondition(!(jobCondition.equals("")), "t.position LIKE ?",
 						"%" + jobCondition.trim() + "%")
-				.addCondition("t.user=?", user)
+				.addCondition(!(character.equals("")),
+						"t.disposition LIKE ?",
+						"%" + character.trim() + "%")
+				//.addCondition("t.user=?", user)
 				.preparePageBean(talentService, pageNum, pageSize);
 			}
 		}
@@ -138,6 +151,8 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 	/** 添加人才信息 */
 	public String save() throws Exception {
 		UploadUtils pu = new UploadUtils();
+		model.setCreator(user.getName());
+		model.setModifer(user.getName());
 		// 上传图片
 		if (photo != null) {
 			String photoPath = pu.photoUpload(photo, photoFileName);
@@ -155,11 +170,11 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 			model.setStandardResumeName(standardResumeName);
 		}
 
-		model.setUser(user);
+		//model.setUser(user);
 
 		talentService.save(model);
 
-		if (company != null) {
+		/*if (company != null) {
 			for (int i = 0; i < company.size(); i++) {
 				if (!(startDate.get(i).trim().equals(""))
 						&& !(endDate.get(i).trim().equals(""))
@@ -170,11 +185,13 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 					je.setEndDate(endDate.get(i));
 					je.setCompany(company.get(i));
 					je.setJob(job.get(i));
+					je.setDuty(duty.get(i));
+					je.setKpi(kpi.get(i));
 					je.setTalent(model);
 					jobExperienceService.save(je);
 				}
 			}
-		}
+		}*/
 
 		return "toList";
 	}
@@ -199,6 +216,7 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 		Talent talent = talentService.getById(model.getId());
 
 		// 2，设置要修改的属性
+		talent.setModifer(user.getLoginName());
 		talent.setName(model.getName());
 		talent.setIsMarried(model.getIsMarried());
 		talent.setBirthday(model.getBirthday());
@@ -215,7 +233,9 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 		talent.setTreatmentLevel(model.getTreatmentLevel());
 		talent.setHopeTreatment(model.getHopeTreatment());
 		talent.setDescription(model.getDescription());
-
+		talent.setDisposition(model.getDisposition());
+		talent.setCompany(model.getCompany());
+		talent.setExperience(model.getExperience());
 		UploadUtils pu = new UploadUtils();
 		// 上传图片
 		if (photo != null) {
@@ -234,8 +254,8 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 			talent.setStandardResumeName(standardResumeName);
 		}
 
-		jobExperienceService.setJobExperiences(talent, startDate, endDate, job,
-				company);
+		/*jobExperienceService.setJobExperiences(talent, startDate, endDate, job,
+				company, duty, kpi);*/
 		talentService.update(talent);
 		return "toList";
 	}
@@ -399,4 +419,33 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 		this.companyCondition = companyCondition;
 	}
 
+
+	public List<String> getDuty() {
+		return duty;
+	}
+
+
+	public void setDuty(List<String> duty) {
+		this.duty = duty;
+	}
+
+
+	public List<String> getKpi() {
+		return kpi;
+	}
+
+
+	public void setKpi(List<String> kpi) {
+		this.kpi = kpi;
+	}
+
+
+	public String getCharacter() {
+		return character;
+	}
+
+	public void setCharacter(String character) {
+		this.character = character;
+	}
+	
 }
