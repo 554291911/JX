@@ -2,6 +2,7 @@ package edu.xupt.entites;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,6 +20,8 @@ public class Talent implements Serializable{
 	
 	private String creator;//创建人
 	private String modifer;//修改人
+	private Date created;//创建时间
+	private Date modified;//修改时间
 	private User user;
 	private String username;
 	private int id;
@@ -45,6 +48,10 @@ public class Talent implements Serializable{
 	private String disposition;//个人性格
 	private String company;//现公司
 	private String experience;//工作经历
+	private String communicate;//沟通情况
+	private String recommend;//推荐职位
+	private String isCommunicate;//是否沟通完成
+	
 	private List<JobExperience> jobExperiences = new ArrayList<JobExperience>();//职位经历
 
 	@Id
@@ -285,6 +292,47 @@ public class Talent implements Serializable{
 
 	public void setExperience(String experience) {
 		this.experience = experience;
+	}
+
+	public String getCommunicate() {
+		return communicate;
+	}
+
+	public void setCommunicate(String communicate) {
+		this.communicate = communicate;
+	}
+
+	public String getRecommend() {
+		return recommend;
+	}
+
+	public void setRecommend(String recommend) {
+		this.recommend = recommend;
+	}
+
+	public String getIsCommunicate() {
+		return isCommunicate;
+	}
+
+	public void setIsCommunicate(String isCommunicate) {
+		this.isCommunicate = isCommunicate;
+	}
+
+	
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public Date getModified() {
+		return modified;
+	}
+
+	public void setModified(Date modified) {
+		this.modified = modified;
 	}
 	
 }

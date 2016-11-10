@@ -56,7 +56,7 @@
 							<td>姓名:${name }</td>
 							<td>邮&nbsp;&nbsp;箱: ${email }
 							</td>
-							<td rowspan="7"><s:iterator id="imgUrl" value="photoUrl">
+							<td rowspan="8"><s:iterator id="imgUrl" value="photoUrl">
 									<br />
 									<img src="${imgUrl}" height="200px" width="200px" />
 								</s:iterator></td>
@@ -81,6 +81,11 @@
 						<tr>
 							<td>目前公司:${company }</td>
 							<td>现任职位:${position }</td>
+						</tr>
+						<tr>
+							<td>推荐职位:${recommend }</td>
+							<td>沟通是否完成:${isCommunicate }
+							</td>
 						</tr>
 						<tr>
 							<td colspan="2">现所在地: ${address }
@@ -146,10 +151,15 @@
 						</thead>
 						<tr>
 							<td colspan="3">
-							<pre><pre>${description }</pre></pre>
+							<pre>${description }</pre>
 							</td>
 						</tr>
-						
+						<thead>
+							<th colspan="3">沟通情况</th>
+						</thead>
+						<tr>
+							<td colspan="3"><pre>${communicate }</pre></td>
+						</tr>
 						<s:if test="#session.user.hasPrivilegeByName('简历全部下载权限')">
 						<thead>
 							<th colspan="3">简历</th>

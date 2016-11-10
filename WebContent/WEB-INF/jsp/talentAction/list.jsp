@@ -10,11 +10,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <title>人才信息管理</title>
      <%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
-
   </head>
-  
  <body>
- 
  <s:form action="talent_list">
 <div id="Title_bar">
     <div id="Title_bar_Head">
@@ -28,11 +25,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="TableTail">
 				<div id="TableTail_inside">
 					<table border="0" cellspacing="0" cellpadding="0" height="100%" align="left">
-			
-			
 		<s:select  name="sexType" headerKey="" headerValue="请选择性别"
          list="{ '男', '女'}"/>  
-			
 		<s:select  name="levelType" headerKey="" headerValue="请选择岗位级别"
          list="{'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C', 'D'}"/> 
           <s:select  name="firstDegreeType" headerKey="" headerValue="请选择第一学历"
@@ -46,7 +40,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="TableTail">
 				<div id="TableTail_inside">
 					<table border="0" cellspacing="0" cellpadding="0" height="100%" align="left">
+						更新时间: <input type="date"  name="startTime" value="${ startTime}"/>
+							    <input type="date"  name="endTime"  value="${endTime }"/>
 						请输入个人特点关键字 ：<s:textfield name="character"  cssClass="InputStyle2" />
+						请输入推荐职位关键字 ：<s:textfield name="nrecommend"  cssClass="InputStyle2" />
+					</table>
+				</div>
+</div>
+<div id="TableTail">
+				<div id="TableTail_inside">
+					<table border="0" cellspacing="0" cellpadding="0" height="100%" align="left">
+						请输入操作人关键字 ：<s:textfield name="operator"  cssClass="InputStyle2" />
 						<input type="IMAGE" src="${pageContext.request.contextPath}/style/blue/images/button/submit.PNG" align="ABSMIDDLE"/>
 					</table>
 				</div>
@@ -65,8 +69,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!-- <td>过往公司</td> -->
 				<td>目前公司</td>
 				<td >现任职位</td>
+				<td>推荐职位</td>
+				<td>沟通完结情况</td>
 				<td >个人特点</td>
 				<td >操作人</td>
+				<td>最后更新时间</td>
 				<td >其他操作</td>
             </tr>
 			
@@ -90,8 +97,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<br />
 				</s:iterator> --%>
 				<td>${position }</td>
+				<td>${recommend }</td>
+				<td>${isCommunicate }</td>
 				<td>${disposition }</td>
 				<td>${creator }</td>
+				<td>${modified }</td>
 				<td><s:a action="talent_detailUI?id=%{id}">查看详细</s:a>&nbsp;
 					<s:a action="talent_editUI?id=%{id}">编辑</s:a>&nbsp;
 					<%-- <s:a action="talent_delete?id=%{id}" onclick="return confirm('确定要删除吗？')">删除</s:a> --%>
@@ -122,4 +132,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 </s:form>
 </body>
+
 </html>

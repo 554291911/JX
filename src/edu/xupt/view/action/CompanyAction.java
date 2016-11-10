@@ -109,6 +109,8 @@ public class CompanyAction extends ModelDrivenBaseAction<Company> {
 		company.setPayConstruction(model.getPayConstruction());
 		company.setPreference(model.getPreference());
 		company.setAddress(model.getAddress());
+		company.setComIntroduction(model.getComIntroduction());
+		company.setProIntroduction(model.getProIntroduction());
 		UploadUtils pu = new UploadUtils();
 		if (contract != null) {
 			String contractName = pu.wordUpload(contract, contractFileName);

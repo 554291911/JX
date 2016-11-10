@@ -109,9 +109,11 @@
 			</a>
 		</div>
 	</s:form>
+	<div class="Description">
+	说明：<br />
+	上传文件不得大于【10M】
 </div>
-
-
+</div>
 </body>
 <script type="text/javascript">
 	function addMore() {

@@ -58,7 +58,7 @@
 							<td>邮&nbsp;&nbsp;箱: <s:textfield name="email"
 									cssClass="InputStyle" />
 							</td>
-							<td rowspan="7"><label class="control-label">${ photoUrl}</label>
+							<td rowspan="8"><label class="control-label">${ photoUrl}</label>
 							<s:file name="photo"></s:file></td>
 						</tr>
 						<tr>
@@ -97,6 +97,12 @@
 							<td><label class="muted">*</label>现任职位:<s:textfield name="position" onBlur="position_validate();"
 							/>
 							<p id="talent_edit_action_position_info" class="muted"></p>
+							</td>
+						</tr>
+						<tr>
+							<td>推荐职位:<s:textfield name="recommend"/></td>
+							<td>沟通是否完成:<s:radio list="{'已完成','未完成'}"
+									name="isCommunicate" />
 							</td>
 						</tr>
 						<tr>
@@ -181,6 +187,13 @@
 						</thead>
 						<tr>
 							<td colspan="3"><s:textarea name="description" cols="160"
+									rows="5"></s:textarea></td>
+						</tr>
+						<thead>
+							<th colspan="3">沟通情况</th>
+						</thead>
+						<tr>
+							<td colspan="3"><s:textarea name="communicate" cols="160"
 									rows="5"></s:textarea></td>
 						</tr>
 						<thead>

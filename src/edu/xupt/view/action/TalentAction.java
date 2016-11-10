@@ -1,6 +1,7 @@
 package edu.xupt.view.action;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.context.annotation.Scope;
@@ -9,10 +10,10 @@ import org.springframework.stereotype.Controller;
 import com.opensymphony.xwork2.ActionContext;
 
 import edu.xupt.base.ModelDrivenBaseAction;
-import edu.xupt.entites.JobExperience;
 import edu.xupt.entites.Talent;
 import edu.xupt.entites.User;
 import edu.xupt.util.QueryHelper;
+import edu.xupt.util.TimeUtil;
 import edu.xupt.util.UploadUtils;
 
 /**
@@ -59,6 +60,10 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 	private String firstDegreeType = "";// 第一学历查询
 	private String character = "";//个人性格
 	private String ncompany = "";//目前公司
+	private String nrecommend = "";//推荐职位
+	private String startTime = "";
+	private String endTime = "";
+	private String operator = "";
 	
 	// 获取登录信息
 	User user = getCurrentUser();
@@ -88,6 +93,17 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 			.addCondition(!(ncompany.equals("")),
 					"t.company LIKE ?",
 					"%" + ncompany.trim() + "%")
+			.addCondition(!(nrecommend.equals("")),
+					"t.recommend LIKE ?",
+					"%" + nrecommend.trim() + "%")
+			.addCondition(!(operator.equals("")),
+					"t.creator LIKE ?",
+					"%" + operator.trim() + "%")
+			.addCondition(!(startTime.equals("") && startTime != null),
+					"t.modified > ?", TimeUtil.stringToDate(startTime))
+			.addCondition(!(endTime.equals("") && endDate != null),
+					"t.modified < ?", TimeUtil.stringToDate(endTime))
+			.addOrderProperty("t.modified", false)
 			.preparePageBean(talentService, pageNum, pageSize);
 			}else{
 				new QueryHelper(Talent.class, "t")
@@ -105,6 +121,20 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 				.addCondition(!(ncompany.equals("")),
 						"t.company LIKE ?",
 						"%" + ncompany.trim() + "%")
+				.addCondition(!(nrecommend.equals("")),
+						"t.recommend LIKE ?",
+						"%" + nrecommend.trim() + "%")
+				.addCondition(!(operator.equals("")),
+						"t.creator LIKE ?",
+						"%" + operator.trim() + "%")
+				.addCondition(!(startTime.equals("")),
+						"t.modified > ?", TimeUtil.stringToDate(startTime))
+				.addCondition(!(endTime.equals("")),
+						"t.modified < ?", TimeUtil.stringToDate(endTime))
+				.addCondition(!(operator.equals("")),
+						"t.creator LIKE ?",
+						"%" + operator.trim() + "%")
+				.addOrderProperty("t.modified", false)
 				.preparePageBean(talentService, pageNum, pageSize);
 			}
 		}
@@ -129,7 +159,18 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 						.addCondition(!(ncompany.equals("")),
 								"t.company LIKE ?",
 								"%" + ncompany.trim() + "%")
+						.addCondition(!(nrecommend.equals("")),
+								"t.recommend LIKE ?",
+								"%" + nrecommend.trim() + "%")
+						.addCondition(!(operator.equals("")),
+								"t.creator LIKE ?",
+								"%" + operator.trim() + "%")
+						.addCondition(!(startTime.equals("")),
+								"t.modified > ?", TimeUtil.stringToDate(startTime))
+						.addCondition(!(endTime.equals("")),
+								"t.modified < ?", TimeUtil.stringToDate(endTime))
 								/*.addCondition("t.user=?", user)*/
+						.addOrderProperty("t.modified", false)
 						.preparePageBean(talentService, pageNum, pageSize);
 				}
 		else{
@@ -148,7 +189,18 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 				.addCondition(!(ncompany.equals("")),
 						"t.company LIKE ?",
 						"%" + ncompany.trim() + "%")
+				.addCondition(!(nrecommend.equals("")),
+						"t.recommend LIKE ?",
+						"%" + nrecommend.trim() + "%")
+				.addCondition(!(operator.equals("")),
+						"t.creator LIKE ?",
+						"%" + operator.trim() + "%")
+				.addCondition(!(startTime.equals("")),
+						"t.modified > ?", TimeUtil.stringToDate(startTime))
+				.addCondition(!(endTime.equals("")),
+						"t.modified < ?", TimeUtil.stringToDate(endTime))
 				//.addCondition("t.user=?", user)
+				.addOrderProperty("t.modified", false)
 				.preparePageBean(talentService, pageNum, pageSize);
 			}
 		}
@@ -167,6 +219,8 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 		UploadUtils pu = new UploadUtils();
 		model.setCreator(user.getName());
 		model.setModifer(user.getName());
+		model.setCreated(new Date());
+		model.setModified(new Date());
 		// 上传图片
 		if (photo != null) {
 			String photoPath = pu.photoUpload(photo, photoFileName);
@@ -231,6 +285,7 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 
 		// 2，设置要修改的属性
 		talent.setModifer(user.getLoginName());
+		talent.setModified(new Date());
 		talent.setName(model.getName());
 		talent.setIsMarried(model.getIsMarried());
 		talent.setBirthday(model.getBirthday());
@@ -250,6 +305,9 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 		talent.setDisposition(model.getDisposition());
 		talent.setCompany(model.getCompany());
 		talent.setExperience(model.getExperience());
+		talent.setRecommend(model.getRecommend());
+		talent.setIsCommunicate(model.getIsCommunicate());
+		talent.setCommunicate(model.getCommunicate());
 		UploadUtils pu = new UploadUtils();
 		// 上传图片
 		if (photo != null) {
@@ -470,6 +528,46 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 
 	public void setNcompany(String ncompany) {
 		this.ncompany = ncompany;
+	}
+
+
+	public String getNrecommend() {
+		return nrecommend;
+	}
+
+
+	public void setNrecommend(String nrecommend) {
+		this.nrecommend = nrecommend;
+	}
+
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+
+
+	public String getOperator() {
+		return operator;
+	}
+
+
+	public void setOperator(String operator) {
+		this.operator = operator;
 	}
 	
 }
