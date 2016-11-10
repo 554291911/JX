@@ -89,7 +89,7 @@
 							<th colspan="3">教育经历</th>
 						</thead>
 						<tr>
-							<td colspan="3">${eduExperience }</td>
+							<td colspan="3"><pre>${eduExperience }</pre></td>
 						</tr>
 						<thead>
 							<th colspan="3">工作经历</th>
@@ -127,26 +127,26 @@
 							<th colspan="3">期望职位</th>
 						</thead>
 						<tr>
-							<td colspan="3">${hopeJob }</td>
+							<td colspan="3"><pre>${hopeJob }</pre></td>
 						</tr>
 						<thead>
 							<th colspan="3">待遇水平</th>
 						</thead>
 						<tr>
-							<td colspan="3">${treatmentLevel }</td>
+							<td colspan="3"><pre>${treatmentLevel }</pre></td>
 						</tr>
 						<thead>
 							<th colspan="3">期望待遇</th>
 						</thead>
 						<tr>
-							<td colspan="3">${hopeTreatment }</td>
+							<td colspan="3"><pre>${hopeTreatment }</pre></td>
 						</tr>
 						<thead>
 							<th colspan="3">整体评价</th>
 						</thead>
 						<tr>
 							<td colspan="3">
-							<pre>${description }</pre>
+							<pre><pre>${description }</pre></pre>
 							</td>
 						</tr>
 						

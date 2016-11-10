@@ -58,6 +58,8 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 	private String companyCondition = "";
 	private String firstDegreeType = "";// 第一学历查询
 	private String character = "";//个人性格
+	private String ncompany = "";//目前公司
+	
 	// 获取登录信息
 	User user = getCurrentUser();
 
@@ -83,6 +85,9 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 			.addCondition(!(character.equals("")),
 									"t.disposition LIKE ?",
 									"%" + character.trim() + "%")
+			.addCondition(!(ncompany.equals("")),
+					"t.company LIKE ?",
+					"%" + ncompany.trim() + "%")
 			.preparePageBean(talentService, pageNum, pageSize);
 			}else{
 				new QueryHelper(Talent.class, "t")
@@ -97,6 +102,9 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 				.addCondition(!(character.equals("")),
 						"t.disposition LIKE ?",
 						"%" + character.trim() + "%")
+				.addCondition(!(ncompany.equals("")),
+						"t.company LIKE ?",
+						"%" + ncompany.trim() + "%")
 				.preparePageBean(talentService, pageNum, pageSize);
 			}
 		}
@@ -118,6 +126,9 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 						.addCondition(!(character.equals("")),
 								"t.disposition LIKE ?",
 								"%" + character.trim() + "%")
+						.addCondition(!(ncompany.equals("")),
+								"t.company LIKE ?",
+								"%" + ncompany.trim() + "%")
 								/*.addCondition("t.user=?", user)*/
 						.preparePageBean(talentService, pageNum, pageSize);
 				}
@@ -134,6 +145,9 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 				.addCondition(!(character.equals("")),
 						"t.disposition LIKE ?",
 						"%" + character.trim() + "%")
+				.addCondition(!(ncompany.equals("")),
+						"t.company LIKE ?",
+						"%" + ncompany.trim() + "%")
 				//.addCondition("t.user=?", user)
 				.preparePageBean(talentService, pageNum, pageSize);
 			}
@@ -446,6 +460,16 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 
 	public void setCharacter(String character) {
 		this.character = character;
+	}
+
+
+	public String getNcompany() {
+		return ncompany;
+	}
+
+
+	public void setNcompany(String ncompany) {
+		this.ncompany = ncompany;
 	}
 	
 }

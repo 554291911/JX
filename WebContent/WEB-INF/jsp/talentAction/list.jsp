@@ -39,6 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          list="{'小学', '初中', '高中', '专科', '本科', '硕士研究生', '博士研究生', '博士后'}"/>  
 						请输入现任职位关键字 ：<s:textfield name="jobCondition" cssClass="InputStyle2" /> 
 						<%-- 请输入过往公司关键字 ：<s:textfield name="companyCondition"  cssClass="InputStyle2" /> --%>
+						请输入目前公司关键字 ：<s:textfield name="ncompany"  cssClass="InputStyle2"/>
 					</table>
 				</div>
 </div>
@@ -90,10 +91,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</s:iterator> --%>
 				<td>${position }</td>
 				<td>${disposition }</td>
-				<td>${modifer }</td>
+				<td>${creator }</td>
 				<td><s:a action="talent_detailUI?id=%{id}">查看详细</s:a>&nbsp;
 					<s:a action="talent_editUI?id=%{id}">编辑</s:a>&nbsp;
-					<s:a action="talent_delete?id=%{id}" onclick="return confirm('确定要删除吗？')">删除</s:a>
+					<%-- <s:a action="talent_delete?id=%{id}" onclick="return confirm('确定要删除吗？')">删除</s:a> --%>
 				</td> 
 			</tr>
 			  </s:iterator>

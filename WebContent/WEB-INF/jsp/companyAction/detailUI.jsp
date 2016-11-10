@@ -16,6 +16,15 @@
              alert(downloadFileMessage);
        }
  </SCRIPT>
+   <style type="text/css">
+        pre{
+           white-space: pre-wrap;       
+           white-space: -moz-pre-wrap;  
+           white-space: -pre-wrap;      
+           white-space: -o-pre-wrap;    
+           word-wrap: break-word;       
+        }
+   </style>
 <body>
 	<!-- 标题显示 -->
 	<div id="Title_bar">
@@ -43,10 +52,10 @@
 						<td colspan="5">${companyName }</td>
 					</tr>
 					 <thead >
-						<th colspan="5">公司简介(*限255字)</th>
+						<th colspan="5">公司简介</th>
 					</thead>
 					<tr>
-					<td colspan="5">${comIntroduction }</td>
+					<td colspan="5"><pre>${comIntroduction }</pre></td>
 						
 					</tr>
 					<tr>
@@ -55,11 +64,11 @@
 						</td>
 					</tr>
 					<thead >
-						<th colspan="5">项目简介(*限255字)</th>
+						<th colspan="5">项目简介</th>
 					</thead>
 					<tr>
 						<td colspan="5">
-						${proIntroduction }
+						<pre>${proIntroduction }</pre>
 						</td>
 					</tr>
 					<tr>
@@ -78,14 +87,14 @@
 						<th colspan="5">薪资结构</th>
 					</thead>
 					<tr>
-						<td colspan="5">${payConstruction }</td>
+						<td colspan="5"><pre>${payConstruction }</pre></td>
 					</tr>
 					<thead>
 						<th colspan="5">用人偏好</th>
 					</thead>
 					<tr>
 					<td colspan="5">
-						${preference }
+						<pre>${preference }</pre>
 						</td>
 					</tr>
 					<thead>
