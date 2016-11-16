@@ -102,7 +102,7 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 			.addCondition(!(startTime.equals("") && startTime != null),
 					"t.modified > ?", TimeUtil.stringToDate(startTime))
 			.addCondition(!(endTime.equals("") && endDate != null),
-					"t.modified < ?", TimeUtil.stringToDate(endTime))
+					"t.modified < ?", TimeUtil.addDay(TimeUtil.stringToDate(endTime)))
 			.addOrderProperty("t.modified", false)
 			.preparePageBean(talentService, pageNum, pageSize);
 			}else{
@@ -130,7 +130,7 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 				.addCondition(!(startTime.equals("")),
 						"t.modified > ?", TimeUtil.stringToDate(startTime))
 				.addCondition(!(endTime.equals("")),
-						"t.modified < ?", TimeUtil.stringToDate(endTime))
+						"t.modified < ?", TimeUtil.addDay(TimeUtil.stringToDate(endTime)))
 				.addCondition(!(operator.equals("")),
 						"t.creator LIKE ?",
 						"%" + operator.trim() + "%")
@@ -168,7 +168,7 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 						.addCondition(!(startTime.equals("")),
 								"t.modified > ?", TimeUtil.stringToDate(startTime))
 						.addCondition(!(endTime.equals("")),
-								"t.modified < ?", TimeUtil.stringToDate(endTime))
+								"t.modified < ?", TimeUtil.addDay(TimeUtil.stringToDate(endTime)))
 								/*.addCondition("t.user=?", user)*/
 						.addOrderProperty("t.modified", false)
 						.preparePageBean(talentService, pageNum, pageSize);
@@ -198,7 +198,7 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 				.addCondition(!(startTime.equals("")),
 						"t.modified > ?", TimeUtil.stringToDate(startTime))
 				.addCondition(!(endTime.equals("")),
-						"t.modified < ?", TimeUtil.stringToDate(endTime))
+						"t.modified < ?", TimeUtil.addDay(TimeUtil.stringToDate(endTime)))
 				//.addCondition("t.user=?", user)
 				.addOrderProperty("t.modified", false)
 				.preparePageBean(talentService, pageNum, pageSize);
@@ -284,8 +284,10 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 		Talent talent = talentService.getById(model.getId());
 
 		// 2，设置要修改的属性
-		talent.setModifer(user.getLoginName());
-		talent.setModified(new Date());
+		talent.setModifer(user.getName());
+		if(user.getName().equals(talent.getCreator())){
+			talent.setModified(new Date());
+		}
 		talent.setName(model.getName());
 		talent.setIsMarried(model.getIsMarried());
 		talent.setBirthday(model.getBirthday());

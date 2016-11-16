@@ -183,8 +183,8 @@
 								onclick="return confirm('确定要下载吗？')">${standardResumeName }</a></td>
 							</s:if>
 							<s:else>
-							<td colspan="1">${oldResumeName}</a></td>
-							<td colspan="2">${standardResumeName }</a></td>
+							<td colspan="1">${oldResumeName}</td>
+							<td colspan="2">${standardResumeName }</td>
 							</s:else>
 						</tr>
         				</s:else>

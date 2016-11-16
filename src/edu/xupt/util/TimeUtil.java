@@ -2,6 +2,7 @@ package edu.xupt.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class TimeUtil {
@@ -28,4 +29,15 @@ public class TimeUtil {
 		Date date = sdf.parse(str);
 		return date;
 	}
+	
+	public static Date addDay(Date date){
+		if(date == null){
+			return null;
+		}
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.DATE, 1);
+		return cal.getTime();
+	}
+	
 }

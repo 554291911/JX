@@ -11,6 +11,15 @@
 <link type="text/css"
 	href="${pageContext.request.contextPath}/css/my.css" rel="stylesheet">
 </head>
+  <style type="text/css">
+        pre{
+           white-space: pre-wrap;       
+           white-space: -moz-pre-wrap;  
+           white-space: -pre-wrap;      
+           white-space: -o-pre-wrap;    
+           word-wrap: break-word;       
+        }
+   </style>
 <body>
 	<!-- 标题显示 -->
 	<div id="Title_bar">
@@ -108,7 +117,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td colspan="8">${nextQuestion }</td>
+									<td colspan="8"><pre>${nextQuestion }</pre></td>
 								</tr>
 							</tbody>
 						</table>
@@ -122,7 +131,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td colspan="8">${nextManager }</td>
+									<td colspan="8"><pre>${nextManager }</pre></td>
 								</tr>
 							</tbody>
 						</table>
@@ -136,7 +145,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td colspan="8">${approval }</td>
+								<td colspan="8"><pre>${approval }</pre></td>
 							</tr>
 						</tbody>
 					</table>

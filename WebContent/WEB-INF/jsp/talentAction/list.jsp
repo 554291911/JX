@@ -98,7 +98,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</s:iterator> --%>
 				<td>${position }</td>
 				<td>${recommend }</td>
+				<s:if test="isCommunicate == '未完成'">
+				<td><div style="color:#FF0000">${isCommunicate }</div></td>
+				</s:if>
+				<s:else>
 				<td>${isCommunicate }</td>
+				</s:else>
 				<td>${disposition }</td>
 				<td>${creator }</td>
 				<td>${modified }</td>

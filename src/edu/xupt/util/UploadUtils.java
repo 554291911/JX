@@ -38,7 +38,7 @@ public class UploadUtils {
 	public  String wordUpload(File word, String wordFileName) throws Exception{
 		String wordPath = "word/";
 		String path = ServletActionContext.getServletContext().getRealPath("/");
-		if(word != null) {
+		if(word != null && word.length() != 0) {
              InputStream is = new FileInputStream(word);   
              File folder = new File(path + "word");
              if(!folder.exists())folder.mkdirs();
@@ -51,8 +51,13 @@ public class UploadUtils {
              }
              is.close();
             os.close();
+        }else{
+        	 File folder = new File(path + "word");
+             if(!folder.exists())folder.mkdirs();
+             File destFile = new File(path+wordPath, wordFileName);
+             destFile.createNewFile();
         }
-		 System.out.println("~~~~~~~~~~~~~~上传成功！");  
+		System.out.println("~~~~~~~~~~~~~~上传成功！");  
 		return wordFileName;
 	}
 	
