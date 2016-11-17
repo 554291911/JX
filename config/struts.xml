@@ -57,6 +57,8 @@
 			</result>
 			<result name="detailUI">/WEB-INF/jsp/talentAction/detailUI.jsp
 			</result>
+			<result name="duplicateError">/WEB-INF/jsp/talentAction/duplicateError.jsp
+			</result>
 			<result name="toList" type="redirectAction">talent_list</result>
 			
 			<!-- 定义文件上传拦截器 -->

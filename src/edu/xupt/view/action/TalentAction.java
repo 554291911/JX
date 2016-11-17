@@ -240,7 +240,11 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 
 		//model.setUser(user);
 
-		talentService.save(model);
+		try {
+			talentService.save(model);
+		} catch (Exception e) {
+			return "duplicateError";
+		}
 
 		/*if (company != null) {
 			for (int i = 0; i < company.size(); i++) {
