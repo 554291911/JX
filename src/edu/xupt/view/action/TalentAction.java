@@ -64,6 +64,7 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 	private String startTime = "";
 	private String endTime = "";
 	private String operator = "";
+	private String tname = "";//候选人姓名
 	
 	// 获取登录信息
 	User user = getCurrentUser();
@@ -96,6 +97,9 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 			.addCondition(!(nrecommend.equals("")),
 					"t.recommend LIKE ?",
 					"%" + nrecommend.trim() + "%")
+			.addCondition(!(tname.equals("")),
+					"t.name LIKE ?",
+					"%" + tname.trim() + "%")
 			.addCondition(!(operator.equals("")),
 					"t.creator LIKE ?",
 					"%" + operator.trim() + "%")
@@ -127,6 +131,9 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 				.addCondition(!(operator.equals("")),
 						"t.creator LIKE ?",
 						"%" + operator.trim() + "%")
+				.addCondition(!(tname.equals("")),
+						"t.name LIKE ?",
+						"%" + tname.trim() + "%")
 				.addCondition(!(startTime.equals("")),
 						"t.modified > ?", TimeUtil.stringToDate(startTime))
 				.addCondition(!(endTime.equals("")),
@@ -165,6 +172,9 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 						.addCondition(!(operator.equals("")),
 								"t.creator LIKE ?",
 								"%" + operator.trim() + "%")
+						.addCondition(!(tname.equals("")),
+								"t.name LIKE ?",
+								"%" + tname.trim() + "%")
 						.addCondition(!(startTime.equals("")),
 								"t.modified > ?", TimeUtil.stringToDate(startTime))
 						.addCondition(!(endTime.equals("")),
@@ -195,6 +205,9 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 				.addCondition(!(operator.equals("")),
 						"t.creator LIKE ?",
 						"%" + operator.trim() + "%")
+				.addCondition(!(tname.equals("")),
+						"t.name LIKE ?",
+						"%" + tname.trim() + "%")
 				.addCondition(!(startTime.equals("")),
 						"t.modified > ?", TimeUtil.stringToDate(startTime))
 				.addCondition(!(endTime.equals("")),
@@ -574,6 +587,16 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 
 	public void setOperator(String operator) {
 		this.operator = operator;
+	}
+
+
+	public String getTname() {
+		return tname;
+	}
+
+
+	public void setTname(String tname) {
+		this.tname = tname;
 	}
 	
 }

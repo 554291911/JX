@@ -50,6 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="TableTail">
 				<div id="TableTail_inside">
 					<table border="0" cellspacing="0" cellpadding="0" height="100%" align="left">
+						请输入候选人姓名关键字：<s:textfield name="tname"  cssClass="InputStyle2" />
 						请输入操作人关键字 ：<s:textfield name="operator"  cssClass="InputStyle2" />
 						<input type="IMAGE" src="${pageContext.request.contextPath}/style/blue/images/button/submit.PNG" align="ABSMIDDLE"/>
 					</table>
@@ -61,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- 表头-->
         <thead>
             <tr align="CENTER" valign="MIDDLE" id="TableTitle">
-            	<td >姓名</td>
+            	<td >候选人姓名</td>
 				<td >性别</td>
                 <td  >岗位级别</td>
                 <td >出生日期</td>
