@@ -91,7 +91,18 @@
 							</tr>
 						</thead>
 						<tbody id="more">
-
+	<s:iterator value="candidates">
+							<tr id="${id }">
+								<td><input type="text" name="cname" value="${cname }"/></td>
+								<td><input type="text" name="phone" value="${phone }"/></td>
+								<td><input type="text" name="customer" value="${customer }"/></td>
+								<td><input type="text" name="bu" value="${bu }"/></td>
+								<td><input type="text" name="job" value="${job }"/></td>
+								<td><input type="text" name="date" value="${date }"/></td>
+								<td><input type="text" name="cstatus" value="${cstatus }"/>&nbsp<input type="button" value="删除"
+									onclick="del_tr(${id});" /></td>
+							</tr>
+						</s:iterator>
 						</tbody>
 					</table>
 				</div>
@@ -184,5 +195,9 @@
 		}
 		tbody.appendChild(tr);
 
+	}
+	function del_tr(id){
+		var tr = document.getElementById(id);
+	    tr.parentNode.removeChild(tr);
 	}
 </script>

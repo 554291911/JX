@@ -85,7 +85,11 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 
 	/** 添加页面 */
 	public String saveUI() throws Exception {
-
+		// 准备上周回显的数据
+		Week week = weekService.getByLastWeek();
+		if(week != null){
+			ActionContext.getContext().getValueStack().push(week);
+		}
 		return "saveUI";
 	}
 
