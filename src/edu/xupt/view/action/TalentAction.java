@@ -347,7 +347,12 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 
 		/*jobExperienceService.setJobExperiences(talent, startDate, endDate, job,
 				company, duty, kpi);*/
-		talentService.update(talent);
+		try {
+			talentService.update(talent);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return "duplicateError";
+		}
 		return "toList";
 	}
 
