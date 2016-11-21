@@ -86,7 +86,7 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 	/** 添加页面 */
 	public String saveUI() throws Exception {
 		// 准备上周回显的数据
-		Week week = weekService.getByLastWeek();
+		Week week = weekService.getByLastWeek(user.getId());
 		if(week != null){
 			ActionContext.getContext().getValueStack().push(week);
 		}
@@ -136,8 +136,13 @@ public class WeekAction extends ModelDrivenBaseAction<Week> {
 
 		// 1，从数据库中获取原对象
 		Week week = weekService.getById(model.getId());
-
+		week.setWeek(model.getWeek());
+		week.setYear(model.getYear());
+		week.setMonth(model.getMonth());
+		week.setRecommend(model.getRecommend());
+		week.setPhoneNum(model.getPhoneNum());
 		week.setEvaluation(model.getEvaluation());
+		week.setOther(model.getOther());
 		week.setName(model.getName());
 		week.setNextManager(model.getNextManager());
 		week.setNextName(model.getNextName());

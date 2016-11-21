@@ -13,8 +13,8 @@ import edu.xupt.service.WeekService;
 @Transactional
 public class WeekServiceImpl extends DaoSupportImpl<Week> implements WeekService{
 
-	public Week getByLastWeek(){
-		Week week=(Week)getSession().createQuery("from Week w where user_id= 6 order by w.id desc")
+	public Week getByLastWeek(int id){
+		Week week=(Week)getSession().createQuery("from Week w where user_id= " + id + " order by w.id desc")
 				.setFirstResult(0).
 				setMaxResults(1).
 				uniqueResult();

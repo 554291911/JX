@@ -5,6 +5,6 @@ import edu.xupt.entites.Week;
 
 public interface WeekService extends DaoSupport<Week>{
 	
-	public Week getByLastWeek();
+	public Week getByLastWeek(int id);
 
 }
