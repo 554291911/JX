@@ -44,7 +44,9 @@
 
 	<!--显示表单内容-->
 	<div id=MainArea>
-		<s:form>
+		<s:form action="talent_saveCom.action" method="post"
+			enctype="multipart/form-data" onsubmit="return register();">
+			<s:hidden name="id"></s:hidden>
 			<!-- 表单内容显示 -->
 			<div class="ItemBlockBorder">
 				<div class="ItemBlock">
@@ -158,7 +160,8 @@
 							<th colspan="3">沟通情况</th>
 						</thead>
 						<tr>
-							<td colspan="3"><pre>${communicate }</pre></td>
+							<td colspan="3"><s:textarea name="communicate" cols="160"
+									rows="5"></s:textarea></td>
 						</tr>
 						<s:if test="#session.user.hasPrivilegeByName('简历全部下载权限')">
 						<thead>
@@ -199,6 +202,7 @@
 			</div>
 			<!-- 表单操作 -->
 			<div id="InputDetailBar">
+			<button type="submit" class="btn btn-default">保存</button>
 				<a href="javascript:history.go(-1);"><button type="button"
 						class="btn btn-default">返回</button></a>
 

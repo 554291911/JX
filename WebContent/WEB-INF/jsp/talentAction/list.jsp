@@ -108,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td>${disposition }</td>
 				<td>${creator }</td>
 				<td>${modified }</td>
-				<td><s:a action="talent_detailUI?id=%{id}">查看详细</s:a>&nbsp;
+				<td><s:a action="talent_detailUI?id=%{id}">查看</s:a>&nbsp;
 					<s:a action="talent_editUI?id=%{id}">编辑</s:a>&nbsp;
 					<%-- <s:a action="talent_delete?id=%{id}" onclick="return confirm('确定要删除吗？')">删除</s:a> --%>
 				</td> 

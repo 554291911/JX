@@ -38,7 +38,6 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 	private List<String> job;
 	private List<String> duty;
 	private List<String> kpi;
-	
 
 	// 获取照片
 	private File photo;
@@ -58,168 +57,96 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 	private String jobCondition = "";
 	private String companyCondition = "";
 	private String firstDegreeType = "";// 第一学历查询
-	private String character = "";//个人性格
-	private String ncompany = "";//目前公司
-	private String nrecommend = "";//推荐职位
+	private String character = "";// 个人性格
+	private String ncompany = "";// 目前公司
+	private String nrecommend = "";// 推荐职位
 	private String startTime = "";
 	private String endTime = "";
 	private String operator = "";
-	private String tname = "";//候选人姓名
-	
+	private String tname = "";// 候选人姓名
+
 	// 获取登录信息
 	User user = getCurrentUser();
 
 	/** 人才信息列表 */
 	public String list() throws Exception {
 		if (user.getLoginName().equals("admin")) {
-			if(!(companyCondition.trim().equals(""))){
-			new QueryHelper(Talent.class, "t", "jobExperiences", "j")
-			.addCondition(!(sexType.equals("")), "t.sex=?", sexType)
-			.addCondition(!(firstDegreeType.equals("")),
-					"t.firstDegree=?", firstDegreeType)
-			.addCondition(!(levelType.equals("")), "t.postLevel=?",
-					levelType)
-			.addCondition(!(jobCondition.equals("")),
-					"t.position LIKE ?",
-					"%" + jobCondition.trim() + "%")
-			.addCondition(!(companyCondition.equals("")),
-							"j.company LIKE ?",
-							"%" + companyCondition.trim() + "%")
-			.addCondition(!(jobCondition.equals("")),
-							"t.position LIKE ?",
-							"%" + jobCondition.trim() + "%")
-			.addCondition(!(character.equals("")),
-									"t.disposition LIKE ?",
-									"%" + character.trim() + "%")
-			.addCondition(!(ncompany.equals("")),
-					"t.company LIKE ?",
-					"%" + ncompany.trim() + "%")
-			.addCondition(!(nrecommend.equals("")),
-					"t.recommend LIKE ?",
-					"%" + nrecommend.trim() + "%")
-			.addCondition(!(tname.equals("")),
-					"t.name LIKE ?",
-					"%" + tname.trim() + "%")
-			.addCondition(!(operator.equals("")),
-					"t.creator LIKE ?",
-					"%" + operator.trim() + "%")
-			.addCondition(!(startTime.equals("") && startTime != null),
-					"t.modified > ?", TimeUtil.stringToDate(startTime))
-			.addCondition(!(endTime.equals("") && endDate != null),
-					"t.modified < ?", TimeUtil.addDay(TimeUtil.stringToDate(endTime)))
-			.addOrderProperty("t.modified", false)
-			.preparePageBean(talentService, pageNum, pageSize);
-			}else{
-				new QueryHelper(Talent.class, "t")
-				.addCondition(!(sexType.equals("")), "t.sex=?", sexType)
-				.addCondition(!(firstDegreeType.equals("")),
-						"t.firstDegree=?", firstDegreeType)
-				.addCondition(!(levelType.equals("")), "t.postLevel=?",
-						levelType)
-				.addCondition(!(jobCondition.equals("")),
-						"t.position LIKE ?",
-						"%" + jobCondition.trim() + "%")
-				.addCondition(!(character.equals("")),
-						"t.disposition LIKE ?",
-						"%" + character.trim() + "%")
-				.addCondition(!(ncompany.equals("")),
-						"t.company LIKE ?",
-						"%" + ncompany.trim() + "%")
-				.addCondition(!(nrecommend.equals("")),
-						"t.recommend LIKE ?",
-						"%" + nrecommend.trim() + "%")
-				.addCondition(!(operator.equals("")),
-						"t.creator LIKE ?",
-						"%" + operator.trim() + "%")
-				.addCondition(!(tname.equals("")),
-						"t.name LIKE ?",
-						"%" + tname.trim() + "%")
-				.addCondition(!(startTime.equals("")),
-						"t.modified > ?", TimeUtil.stringToDate(startTime))
-				.addCondition(!(endTime.equals("")),
-						"t.modified < ?", TimeUtil.addDay(TimeUtil.stringToDate(endTime)))
-				.addCondition(!(operator.equals("")),
-						"t.creator LIKE ?",
-						"%" + operator.trim() + "%")
-				.addOrderProperty("t.modified", false)
-				.preparePageBean(talentService, pageNum, pageSize);
-			}
-		}
-		
-		else{
-			if(!(companyCondition.equals(""))){
+			if (!(companyCondition.trim().equals(""))) {
 				new QueryHelper(Talent.class, "t", "jobExperiences", "j")
 						.addCondition(!(sexType.equals("")), "t.sex=?", sexType)
-						.addCondition(!(firstDegreeType.equals("")),
-								"t.firstDegree=?", firstDegreeType)
-						.addCondition(!(levelType.equals("")), "t.postLevel=?",
-								levelType)
-						.addCondition(!(jobCondition.equals("")),
-								"t.position LIKE ?",
-								"%" + jobCondition.trim() + "%")
-						.addCondition(!(companyCondition.equals("")),
-								"j.company LIKE ?",
+						.addCondition(!(firstDegreeType.equals("")), "t.firstDegree=?", firstDegreeType)
+						.addCondition(!(levelType.equals("")), "t.postLevel=?", levelType)
+						.addCondition(!(jobCondition.equals("")), "t.position LIKE ?", "%" + jobCondition.trim() + "%")
+						.addCondition(!(companyCondition.equals("")), "j.company LIKE ?",
 								"%" + companyCondition.trim() + "%")
-						.addCondition(!(character.equals("")),
-								"t.disposition LIKE ?",
-								"%" + character.trim() + "%")
-						.addCondition(!(ncompany.equals("")),
-								"t.company LIKE ?",
-								"%" + ncompany.trim() + "%")
-						.addCondition(!(nrecommend.equals("")),
-								"t.recommend LIKE ?",
-								"%" + nrecommend.trim() + "%")
-						.addCondition(!(operator.equals("")),
-								"t.creator LIKE ?",
-								"%" + operator.trim() + "%")
-						.addCondition(!(tname.equals("")),
-								"t.name LIKE ?",
-								"%" + tname.trim() + "%")
-						.addCondition(!(startTime.equals("")),
-								"t.modified > ?", TimeUtil.stringToDate(startTime))
-						.addCondition(!(endTime.equals("")),
-								"t.modified < ?", TimeUtil.addDay(TimeUtil.stringToDate(endTime)))
-								/*.addCondition("t.user=?", user)*/
-						.addOrderProperty("t.modified", false)
-						.preparePageBean(talentService, pageNum, pageSize);
-				}
-		else{
-		// 准备分页信息
-		new QueryHelper(Talent.class, "t")
-				.addCondition(!(sexType.equals("")), "t.sex=?", sexType)
-				.addCondition(!(firstDegreeType.equals("")), "t.firstDegree=?",
-						firstDegreeType)
-				.addCondition(!(levelType.equals("")), "t.postLevel=?",
-						levelType)
-				.addCondition(!(jobCondition.equals("")), "t.position LIKE ?",
-						"%" + jobCondition.trim() + "%")
-				.addCondition(!(character.equals("")),
-						"t.disposition LIKE ?",
-						"%" + character.trim() + "%")
-				.addCondition(!(ncompany.equals("")),
-						"t.company LIKE ?",
-						"%" + ncompany.trim() + "%")
-				.addCondition(!(nrecommend.equals("")),
-						"t.recommend LIKE ?",
-						"%" + nrecommend.trim() + "%")
-				.addCondition(!(operator.equals("")),
-						"t.creator LIKE ?",
-						"%" + operator.trim() + "%")
-				.addCondition(!(tname.equals("")),
-						"t.name LIKE ?",
-						"%" + tname.trim() + "%")
-				.addCondition(!(startTime.equals("")),
-						"t.modified > ?", TimeUtil.stringToDate(startTime))
-				.addCondition(!(endTime.equals("")),
-						"t.modified < ?", TimeUtil.addDay(TimeUtil.stringToDate(endTime)))
-				//.addCondition("t.user=?", user)
-				.addOrderProperty("t.modified", false)
-				.preparePageBean(talentService, pageNum, pageSize);
+						.addCondition(!(jobCondition.equals("")), "t.position LIKE ?", "%" + jobCondition.trim() + "%")
+						.addCondition(!(character.equals("")), "t.disposition LIKE ?", "%" + character.trim() + "%")
+						.addCondition(!(ncompany.equals("")), "t.company LIKE ?", "%" + ncompany.trim() + "%")
+						.addCondition(!(nrecommend.equals("")), "t.recommend LIKE ?", "%" + nrecommend.trim() + "%")
+						.addCondition(!(tname.equals("")), "t.name LIKE ?", "%" + tname.trim() + "%")
+						.addCondition(!(operator.equals("")), "t.creator LIKE ?", "%" + operator.trim() + "%")
+						.addCondition(!(startTime.equals("") && startTime != null), "t.modified > ?",
+								TimeUtil.stringToDate(startTime))
+						.addCondition(!(endTime.equals("") && endDate != null), "t.modified < ?",
+								TimeUtil.addDay(TimeUtil.stringToDate(endTime)))
+						.addOrderProperty("t.modified", false).preparePageBean(talentService, pageNum, pageSize);
+			} else {
+				new QueryHelper(Talent.class, "t").addCondition(!(sexType.equals("")), "t.sex=?", sexType)
+						.addCondition(!(firstDegreeType.equals("")), "t.firstDegree=?", firstDegreeType)
+						.addCondition(!(levelType.equals("")), "t.postLevel=?", levelType)
+						.addCondition(!(jobCondition.equals("")), "t.position LIKE ?", "%" + jobCondition.trim() + "%")
+						.addCondition(!(character.equals("")), "t.disposition LIKE ?", "%" + character.trim() + "%")
+						.addCondition(!(ncompany.equals("")), "t.company LIKE ?", "%" + ncompany.trim() + "%")
+						.addCondition(!(nrecommend.equals("")), "t.recommend LIKE ?", "%" + nrecommend.trim() + "%")
+						.addCondition(!(operator.equals("")), "t.creator LIKE ?", "%" + operator.trim() + "%")
+						.addCondition(!(tname.equals("")), "t.name LIKE ?", "%" + tname.trim() + "%")
+						.addCondition(!(startTime.equals("")), "t.modified > ?", TimeUtil.stringToDate(startTime))
+						.addCondition(!(endTime.equals("")), "t.modified < ?",
+								TimeUtil.addDay(TimeUtil.stringToDate(endTime)))
+						.addCondition(!(operator.equals("")), "t.creator LIKE ?", "%" + operator.trim() + "%")
+						.addOrderProperty("t.modified", false).preparePageBean(talentService, pageNum, pageSize);
+			}
+		}
+
+		else {
+			if (!(companyCondition.equals(""))) {
+				new QueryHelper(Talent.class, "t", "jobExperiences", "j")
+						.addCondition(!(sexType.equals("")), "t.sex=?", sexType)
+						.addCondition(!(firstDegreeType.equals("")), "t.firstDegree=?", firstDegreeType)
+						.addCondition(!(levelType.equals("")), "t.postLevel=?", levelType)
+						.addCondition(!(jobCondition.equals("")), "t.position LIKE ?", "%" + jobCondition.trim() + "%")
+						.addCondition(!(companyCondition.equals("")), "j.company LIKE ?",
+								"%" + companyCondition.trim() + "%")
+						.addCondition(!(character.equals("")), "t.disposition LIKE ?", "%" + character.trim() + "%")
+						.addCondition(!(ncompany.equals("")), "t.company LIKE ?", "%" + ncompany.trim() + "%")
+						.addCondition(!(nrecommend.equals("")), "t.recommend LIKE ?", "%" + nrecommend.trim() + "%")
+						.addCondition(!(operator.equals("")), "t.creator LIKE ?", "%" + operator.trim() + "%")
+						.addCondition(!(tname.equals("")), "t.name LIKE ?", "%" + tname.trim() + "%")
+						.addCondition(!(startTime.equals("")), "t.modified > ?", TimeUtil.stringToDate(startTime))
+						.addCondition(!(endTime.equals("")), "t.modified < ?",
+								TimeUtil.addDay(TimeUtil.stringToDate(endTime)))
+						/* .addCondition("t.user=?", user) */
+						.addOrderProperty("t.modified", false).preparePageBean(talentService, pageNum, pageSize);
+			} else {
+				// 准备分页信息
+				new QueryHelper(Talent.class, "t").addCondition(!(sexType.equals("")), "t.sex=?", sexType)
+						.addCondition(!(firstDegreeType.equals("")), "t.firstDegree=?", firstDegreeType)
+						.addCondition(!(levelType.equals("")), "t.postLevel=?", levelType)
+						.addCondition(!(jobCondition.equals("")), "t.position LIKE ?", "%" + jobCondition.trim() + "%")
+						.addCondition(!(character.equals("")), "t.disposition LIKE ?", "%" + character.trim() + "%")
+						.addCondition(!(ncompany.equals("")), "t.company LIKE ?", "%" + ncompany.trim() + "%")
+						.addCondition(!(nrecommend.equals("")), "t.recommend LIKE ?", "%" + nrecommend.trim() + "%")
+						.addCondition(!(operator.equals("")), "t.creator LIKE ?", "%" + operator.trim() + "%")
+						.addCondition(!(tname.equals("")), "t.name LIKE ?", "%" + tname.trim() + "%")
+						.addCondition(!(startTime.equals("")), "t.modified > ?", TimeUtil.stringToDate(startTime))
+						.addCondition(!(endTime.equals("")), "t.modified < ?",
+								TimeUtil.addDay(TimeUtil.stringToDate(endTime)))
+						// .addCondition("t.user=?", user)
+						.addOrderProperty("t.modified", false).preparePageBean(talentService, pageNum, pageSize);
 			}
 		}
 		return "list";
 	}
-
 
 	/** 添加人才信息页面 */
 	public String saveUI() throws Exception {
@@ -246,12 +173,11 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 		}
 		// 上传标准简历
 		if (standardResume != null) {
-			String standardResumeName = pu.wordUpload(standardResume,
-					standardResumeFileName);
+			String standardResumeName = pu.wordUpload(standardResume, standardResumeFileName);
 			model.setStandardResumeName(standardResumeName);
 		}
 
-		//model.setUser(user);
+		// model.setUser(user);
 
 		try {
 			talentService.save(model);
@@ -259,24 +185,18 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 			return "duplicateError";
 		}
 
-		/*if (company != null) {
-			for (int i = 0; i < company.size(); i++) {
-				if (!(startDate.get(i).trim().equals(""))
-						&& !(endDate.get(i).trim().equals(""))
-						&& !(company.get(i).trim().equals(""))
-						&& !(job.get(i).trim().equals(""))) {
-					JobExperience je = new JobExperience();
-					je.setStartDate(startDate.get(i));
-					je.setEndDate(endDate.get(i));
-					je.setCompany(company.get(i));
-					je.setJob(job.get(i));
-					je.setDuty(duty.get(i));
-					je.setKpi(kpi.get(i));
-					je.setTalent(model);
-					jobExperienceService.save(je);
-				}
-			}
-		}*/
+		/*
+		 * if (company != null) { for (int i = 0; i < company.size(); i++) { if
+		 * (!(startDate.get(i).trim().equals("")) &&
+		 * !(endDate.get(i).trim().equals("")) &&
+		 * !(company.get(i).trim().equals("")) &&
+		 * !(job.get(i).trim().equals(""))) { JobExperience je = new
+		 * JobExperience(); je.setStartDate(startDate.get(i));
+		 * je.setEndDate(endDate.get(i)); je.setCompany(company.get(i));
+		 * je.setJob(job.get(i)); je.setDuty(duty.get(i));
+		 * je.setKpi(kpi.get(i)); je.setTalent(model);
+		 * jobExperienceService.save(je); } } }
+		 */
 
 		return "toList";
 	}
@@ -295,6 +215,19 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 		return "editUI";
 	}
 
+	public String saveCom() throws Exception {
+		// 1，从数据库中获取原对象
+		Talent talent = talentService.getById(model.getId());
+
+		talent.setCommunicate(model.getCommunicate());
+		try {
+			talentService.update(talent);
+		} catch (Exception e) {
+			return "duplicateError";
+		}
+		return "toList";
+	}
+
 	/** 修改人才信息 */
 	public String edit() throws Exception {
 		// 1，从数据库中获取原对象
@@ -302,7 +235,7 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 
 		// 2，设置要修改的属性
 		talent.setModifer(user.getName());
-		if(user.getName().equals(talent.getCreator())){
+		if (user.getName().equals(talent.getCreator())) {
 			talent.setModified(new Date());
 		}
 		talent.setName(model.getName());
@@ -340,13 +273,14 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 		}
 		// 上传标准简历
 		if (standardResume != null) {
-			String standardResumeName = pu.wordUpload(standardResume,
-					standardResumeFileName);
+			String standardResumeName = pu.wordUpload(standardResume, standardResumeFileName);
 			talent.setStandardResumeName(standardResumeName);
 		}
 
-		/*jobExperienceService.setJobExperiences(talent, startDate, endDate, job,
-				company, duty, kpi);*/
+		/*
+		 * jobExperienceService.setJobExperiences(talent, startDate, endDate,
+		 * job, company, duty, kpi);
+		 */
 		try {
 			talentService.update(talent);
 		} catch (Exception e) {
@@ -515,26 +449,21 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 		this.companyCondition = companyCondition;
 	}
 
-
 	public List<String> getDuty() {
 		return duty;
 	}
-
 
 	public void setDuty(List<String> duty) {
 		this.duty = duty;
 	}
 
-
 	public List<String> getKpi() {
 		return kpi;
 	}
 
-
 	public void setKpi(List<String> kpi) {
 		this.kpi = kpi;
 	}
-
 
 	public String getCharacter() {
 		return character;
@@ -544,64 +473,52 @@ public class TalentAction extends ModelDrivenBaseAction<Talent> {
 		this.character = character;
 	}
 
-
 	public String getNcompany() {
 		return ncompany;
 	}
-
 
 	public void setNcompany(String ncompany) {
 		this.ncompany = ncompany;
 	}
 
-
 	public String getNrecommend() {
 		return nrecommend;
 	}
-
 
 	public void setNrecommend(String nrecommend) {
 		this.nrecommend = nrecommend;
 	}
 
-
 	public String getStartTime() {
 		return startTime;
 	}
-
 
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
-
 	public String getEndTime() {
 		return endTime;
 	}
-
 
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 
-
 	public String getOperator() {
 		return operator;
 	}
-
 
 	public void setOperator(String operator) {
 		this.operator = operator;
 	}
 
-
 	public String getTname() {
 		return tname;
 	}
 
-
 	public void setTname(String tname) {
 		this.tname = tname;
 	}
-	
+
 }
